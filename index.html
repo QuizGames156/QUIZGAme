@@ -22,6 +22,7 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
 .code{font-family:ui-monospace,Consolas,monospace;letter-spacing:1px}.notice{background:#152c46;border:1px solid #34516f;border-radius:14px;padding:13px;line-height:1.55}.stageBadge{display:inline-block;background:#172f49;border:1px solid #34516f;border-radius:999px;padding:6px 10px;font-size:12px}
 .rankClick{cursor:pointer;padding:10px 12px;border:1px solid #2d4866;border-radius:14px;background:#0b1a2b;display:inline-block}.modal{position:fixed;inset:0;background:#000a;display:grid;place-items:center;padding:16px;z-index:99}.modalCard{width:min(520px,100%);max-height:85vh;overflow:auto;background:#0e1d30;border:1px solid #35516f;border-radius:22px;padding:18px}.rankStep{padding:11px;border-bottom:1px solid #223b57}.adminHero{background:linear-gradient(135deg,#3a2405,#17120a);border:1px solid #a86f13;border-radius:18px;padding:15px;margin:10px 0}.chatFab{position:fixed;right:16px;bottom:18px;width:58px;height:58px;border-radius:50%;border:0;background:#22c55e;font-size:25px;z-index:40;box-shadow:0 8px 30px #0008}.chatPanel{position:fixed;right:12px;bottom:84px;width:min(390px,calc(100vw - 24px));height:min(600px,72vh);z-index:45;background:#0b1727;border:1px solid #35516f;border-radius:22px;padding:13px;display:flex;flex-direction:column;box-shadow:0 18px 60px #000b}.chatMsgs{flex:1;overflow:auto;padding:6px}.chatMsg{padding:9px 10px;margin:7px 0;background:#13263d;border-radius:13px}.chatHead{display:flex;justify-content:space-between;gap:8px}.exitLearn{width:auto;margin:0 0 10px;padding:9px 12px}.weakBox{margin-top:12px;padding:12px;border:1px solid #5a4621;background:#2a210d;border-radius:15px}.rankProgress{height:12px;background:#07111d;border-radius:99px;overflow:hidden;margin:9px 0}.rankProgress i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#eab308);transition:width .8s ease}.leaderHero{background:linear-gradient(135deg,#5b4100,#211800);border:1px solid #eab308;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 0 30px #eab30822}.leaderName{font-size:25px;font-weight:900}.chatRank{font-size:11px;padding:2px 7px;border-radius:99px;background:#243a52}.chatRank.first{background:#6b5000;color:#ffe58a}.tournamentCard{border:1px solid #7c5b12;background:linear-gradient(135deg,#2c2109,#111b29);border-radius:18px;padding:15px;margin-top:12px}.timer{font-size:34px;font-weight:900;letter-spacing:2px}.xpPop{position:fixed;top:20%;left:50%;transform:translateX(-50%);font-size:28px;font-weight:900;z-index:120;animation:xpfloat 1.1s ease forwards}@keyframes xpfloat{to{opacity:0;transform:translate(-50%,-45px)}}
 @media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}h1{font-size:23px}.wrap{padding-left:10px;padding-right:10px}.card{border-radius:20px}}
+.examLock{border:1px solid #ef4444;background:#2b1014;border-radius:16px;padding:13px;margin:12px 0}.examTimer{font-size:42px;font-weight:1000;text-align:center}.examMeta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.lockedAction{opacity:.48;filter:grayscale(.35)}
 </style>
 
 <link rel="manifest" href="manifest.json">
@@ -37,6 +38,11 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
 #payInfoModal.open{display:flex}.pay-card{width:min(440px,100%);background:#101722;border-radius:22px;padding:20px;color:#fff}
 .pay-account{font-size:38px;font-weight:900;letter-spacing:2px}.pay-primary,.pay-secondary,.payment-open-btn{width:100%;padding:14px;border:0;border-radius:13px;font-weight:900;margin-top:10px}
 .pay-primary,.payment-open-btn{background:#20c875;color:#06150d}.pay-secondary{background:#29313d;color:#fff}.pay-input{width:100%;box-sizing:border-box;padding:13px;border-radius:12px;background:#0a1018;color:#fff;border:1px solid #39414d}
+.examLock{border:1px solid #ef4444;background:#2b1014;border-radius:16px;padding:13px;margin:12px 0}.examTimer{font-size:42px;font-weight:1000;text-align:center}.examMeta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.lockedAction{opacity:.48;filter:grayscale(.35)}
+</style><style>
+/* v3 Battle Survival + Rank Up */
+.battleChoice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.battleChoice .menu{min-height:118px;display:flex;flex-direction:column;justify-content:center;text-align:center}.soloTimer{font-size:44px;font-weight:900;text-align:center;margin:8px 0}.soloScore{display:flex;justify-content:space-between;gap:8px;margin:8px 0}.soloOpt{width:100%;text-align:left;margin:7px 0}.rankCelebration{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(3,7,18,.88);backdrop-filter:blur(6px);animation:rankFade .35s ease}.rankCelebration.hide{opacity:0;transition:.45s}.rankCelebrationCard{text-align:center;padding:30px 20px;max-width:520px;width:90%;position:relative}.rankCelebration .big{font-size:30px;font-weight:1000}.rankCelebration .icon{font-size:72px;animation:rankPop .7s cubic-bezier(.2,1.5,.4,1)}.confetti{position:fixed;top:-20px;width:10px;height:18px;border-radius:3px;animation:confettiFall 2.6s linear forwards;z-index:100000}@keyframes confettiFall{to{transform:translateY(110vh) rotate(900deg)}}@keyframes rankPop{0%{transform:scale(.2) rotate(-10deg);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes rankFade{from{opacity:0}to{opacity:1}}@media(max-width:560px){.battleChoice{grid-template-columns:1fr}.soloTimer{font-size:38px}}
+.examLock{border:1px solid #ef4444;background:#2b1014;border-radius:16px;padding:13px;margin:12px 0}.examTimer{font-size:42px;font-weight:1000;text-align:center}.examMeta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.lockedAction{opacity:.48;filter:grayscale(.35)}
 </style></head>
 <body><div class="wrap">
 
@@ -90,12 +96,18 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
  <div id="home" class="card">
   <h2>🧠 Цээжлэх аялал</h2>
   <p class="muted">1 → 24 яг хуулийн дарааллаар. Нэг нэр томьёог уншина → өгүүлбэр угсарна → дахин угсарна → дараа нь хүнд шалгалтаар бататгана.</p>
-  <button class="btn" onclick="startLearning()">▶ ҮРГЭЛЖЛҮҮЛЭН ЦЭЭЖЛЭХ</button>
-  <button class="btn gold" onclick="startMaster()">⚡ XP СОРИЛ</button><div id="tournamentHome" class="tournamentCard"><b>🏆 СОРИЛЫН ЭЦСИЙН ТЭМЦЭЭН</b><div class="muted tiny" style="margin-top:5px">Идэвхтэй тэмцээн байгаа эсэхийг шалгаж байна…</div></div>
+  <div id="dailyExamGate"></div>
+  <button class="btn dailyLocked" onclick="guardDaily(startLearning)">▶ ҮРГЭЛЖЛҮҮЛЭН ЦЭЭЖЛЭХ</button>
+  <button class="btn gold dailyLocked" onclick="guardDaily(startMaster)">⚡ XP СОРИЛ</button>
+  <button class="btn dailyLocked" onclick="guardDaily(openRecall)">🎙️⌨️ ЦЭЭЖЭЭР ШАЛГУУЛАХ</button>
+  <button class="btn alt dailyLocked" onclick="guardDaily(openLiveBattle)">⚡ QUIZ BATTLE</button>
+  <div id="tournamentHome" class="tournamentCard"><b>🏆 ТЭМЦЭЭН</b><div class="muted tiny" style="margin-top:5px">Ойрын үед төлөвлөсөн тэмцээнүүд</div><div style="margin-top:9px"><b>📅 2026.09.13 · 17:00–17:30</b><div class="tiny muted">Дүн 17:40</div></div></div>
 <button id="adminBtn" class="btn hidden" onclick="showAdmin()">⚙️ ADMIN</button>
   <div class="grid2" style="margin-top:10px">
    <div class="menu" onclick="showLeaderboard()"><b>🏆 Чансаа</b><span class="muted">XP-ээр жагсана</span></div>
+   <div class="menu" onclick="showExamLeaderboard()"><b>📝 Шалгалтын тэргүүлэгчид</b><span class="muted">Дундаж хувиар rank</span></div>
    <div class="menu" onclick="showMastery()"><b>📚 24 нэр томьёо</b><span class="muted">Цээжилсэн хувь</span></div>
+   <div class="menu" onclick="showExamHistory()"><b>📅 Миний шалгалтууд</b><span class="muted">30 минутын шалгалтын түүх</span></div>
   </div>
   <div id="weakArea" class="weakBox"></div><button class="btn alt" onclick="logout()">Гарах</button>
  </div>
@@ -107,7 +119,12 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
  </div>
 
  <div id="leaderboard" class="card hidden"><h2>🏆 XP чансаа</h2><div id="leaderHero"></div><div id="leaderRows"></div><button class="btn alt" onclick="backHome()">Буцах</button></div>
+ <div id="dailyExamPage" class="card hidden"><button class="btn alt exitLearn" onclick="confirmExamExit()">← НҮҮР РҮҮ</button><div id="dailyExamContent"></div></div>
+ <div id="examLeaderboardPage" class="card hidden"><h2>📝 Шалгалтын тэргүүлэгчид</h2><div id="examLeaderRows"></div><button class="btn alt" onclick="backHome()">Буцах</button></div>
+ <div id="examHistoryPage" class="card hidden"><h2>📅 Миний шалгалтын түүх</h2><div id="examHistoryRows"></div><button class="btn alt" onclick="backHome()">Буцах</button></div>
  <div id="tournamentPage" class="card hidden"><button class="btn alt exitLearn" onclick="backHome()">← НҮҮР РҮҮ</button><div id="tournamentContent"></div></div><div id="masteryPage" class="card hidden"><h2>📚 Цээжилсэн түвшин</h2><div id="masteryRows"></div><button class="btn alt" onclick="backHome()">Буцах</button></div>
+ <div id="recallPage" class="card hidden"><button class="btn alt exitLearn" onclick="stopRecallVoice();backHome()">← НҮҮР РҮҮ</button><div id="recallContent"></div></div>
+ <div id="liveBattlePage" class="card hidden"><button class="btn alt exitLearn" onclick="backHome()">← НҮҮР РҮҮ</button><div id="liveBattleContent"></div></div>
  <button id="chatFab" class="chatFab" onclick="toggleChat()">💬</button>
  <div id="chatPanel" class="chatPanel hidden"><div class="topline"><b>💬 Нийтийн чат</b><button class="btn small alt" onclick="toggleChat(false)">✕</button></div><div id="chatMsgs" class="chatMsgs"></div><div class="topline"><input id="chatInput" class="input" maxlength="250" placeholder="Мессеж бичих…"><button class="btn small" onclick="sendChat()">Илгээх</button></div></div>
 </section>
@@ -152,6 +169,7 @@ async function loadSession(){
  me={id:uid,name:p.display_name,username:p.username,active:p.is_active,access_expires_at:p.access_expires_at,xp:p.xp,unlocked:p.unlocked,streak:p.streak,
  mastery:Array.from({length:24},(_,i)=>(prog||[]).find(x=>x.term_no===i+1)?.mastery||0)};
  openByState();
+ watchDuels();
 }
 async function persist(){
  if(!me)return;
@@ -244,7 +262,8 @@ function showRankModal(){
 }
 function closeRankModal(){rankModal.classList.add('hidden')}
 function xpBase(kind){let ri=rankIndexFor(me.xp), base=[90,65,48,34,24][ri]; if(kind==='easy')base*=.75;if(kind==='hard')base*=1.08;if(kind==='challenge')base*=.14;return Math.max(4,Math.round(base*(.88+Math.random()*.24)))}
-function showXp(n){let d=document.createElement('div');d.className='xpPop';d.textContent=(n>=0?'+':'')+n+' XP';document.body.appendChild(d);setTimeout(()=>d.remove(),1100)}
+function showXp(n){let d=document.createElement('div');d.className='xpPop';d.textContent=(n>=0?'+':'')+n+' XP';document.body.appendChild(d);setTimeout(()=>d.remove(),1100);if(n>0&&me){const before=Math.max(0,(me.xp||0)-n),a=rankIndexFor(before),b=rankIndexFor(me.xp||0);if(b>a)setTimeout(()=>showRankUp(b),250)}}
+function showRankUp(i){const r=RANKS[i];if(!r)return;const parts=r[1].split(' '),icon=parts.shift(),name=parts.join(' ');const ov=document.createElement('div');ov.className='rankCelebration';ov.innerHTML=`<div class="rankCelebrationCard"><div class="icon">${icon}</div><div class="tiny">🎉 ШИНЭ ЦОЛ НЭЭГДЛЭЭ</div><div class="big">${name}</div><div style="margin-top:8px"><b>${r[0].toLocaleString()} XP</b> хүрлээ!</div></div>`;document.body.appendChild(ov);for(let k=0;k<42;k++){let c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=`hsl(${Math.random()*360} 90% 60%)`;c.style.animationDelay=(Math.random()*.6)+'s';c.style.transform=`rotate(${Math.random()*360}deg)`;document.body.appendChild(c);setTimeout(()=>c.remove(),3300)}setTimeout(()=>{ov.classList.add('hide');setTimeout(()=>ov.remove(),500)},2600)}
 function renderWeak(){if(!me)return;let a=me.mastery.map((m,i)=>({m,i})).sort((a,b)=>a.m-b.m).slice(0,3);weakArea.innerHTML=`<b>🧠 Миний сул хэсэг</b><div class="tiny" style="margin-top:5px">${a.map(x=>`№${x.i+1} ${DATA[x.i][0]} — ${x.m}%`).join('<br>')}</div>`}
 
 async function refreshStats(){
@@ -277,13 +296,13 @@ async function refreshStats(){
  document.getElementById("position").textContent="#"+(mine?.rank_number||"-");
  const top=(board||[])[0];
  leaderHome.innerHTML=top&&top.player_username===me.username?`<div class="leaderHero"><div class="tiny">🏆 ЧАНСААГ ТЭРГҮҮЛЭГЧ</div><div class="leaderName">👑 ${escapeHtml(me.name)}</div><b>${rankFor(me.xp)} · ${me.xp.toLocaleString()} XP</b></div>`:'';
- await refreshTournamentHome();
+ await refreshDailyExamGate();
 
  const {data:count}=await sb.rpc("get_player_count");
  userCount.textContent=`👥 ${count||0} суралцагч`;
  renderWeak();
 }
-function hidePages(){[home,learn,leaderboard,masteryPage,adminPage,tournamentPage].forEach(x=>x.classList.add("hidden"))}
+function hidePages(){[home,learn,leaderboard,masteryPage,adminPage,tournamentPage,recallPage,liveBattlePage,dailyExamPage,examLeaderboardPage,examHistoryPage].forEach(x=>x.classList.add("hidden"))}
 function backHome(){hidePages();home.classList.remove("hidden");refreshStats()}
 function splitDefinition(text, hard=false){
  let words=text.trim().split(/\s+/);
@@ -387,24 +406,160 @@ function showMastery(){
 let chatChannel=null;
 function toggleChat(force){let open=typeof force==='boolean'?force:chatPanel.classList.contains('hidden');chatPanel.classList.toggle('hidden',!open);if(open)loadChat()}
 async function loadChat(){const {data:lb}=await sb.rpc('get_leaderboard');window._rankMap=new Map((lb||[]).map(x=>[x.player_display_name,x.rank_number]));const {data,error}=await sb.from('chat_messages').select('id,user_id,display_name,message,created_at').order('created_at',{ascending:false}).limit(60);if(error){chatMsgs.innerHTML='<p class="muted">Chat SQL суулгасны дараа чат ажиллана.</p>';return}chatMsgs.innerHTML=(data||[]).reverse().map(chatHtml).join('');chatMsgs.scrollTop=chatMsgs.scrollHeight;if(!chatChannel){chatChannel=sb.channel('public-chat').on('postgres_changes',{event:'INSERT',schema:'public',table:'chat_messages'},p=>{chatMsgs.insertAdjacentHTML('beforeend',chatHtml(p.new));chatMsgs.scrollTop=chatMsgs.scrollHeight}).subscribe()}}
-function chatHtml(x){let r=window._rankMap?.get(x.display_name);return `<div class="chatMsg"><div class="chatHead"><b>${r===1?'👑 ':''}${escapeHtml(x.display_name||'Сурагч')} ${r?`<span class="chatRank ${r===1?'first':''}">#${r}</span>`:''}</b><span class="tiny">${new Date(x.created_at).toLocaleTimeString('mn-MN',{hour:'2-digit',minute:'2-digit'})}</span></div><div>${escapeHtml(x.message)}</div></div>`}
+function chatHtml(x){let r=window._rankMap?.get(x.display_name),duel=(me&&x.user_id!==me.id)?`<button class="btn small gold" style="margin-top:6px;width:auto" onclick="challengeDuel('${x.user_id}','${escapeHtml((x.display_name||'Тоглогч').replace(/'/g,'&#39;'))}')">⚔️ 50 XP ӨРСӨЛДӨХ</button>`:'';return `<div class="chatMsg"><div class="chatHead"><b>${r===1?'👑 ':''}${escapeHtml(x.display_name||'Сурагч')} ${r?`<span class="chatRank ${r===1?'first':''}">#${r}</span>`:''}</b><span class="tiny">${new Date(x.created_at).toLocaleTimeString('mn-MN',{hour:'2-digit',minute:'2-digit'})}</span></div><div>${escapeHtml(x.message)}</div>${duel}</div>`}
 function escapeHtml(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 async function sendChat(){let message=chatInput.value.trim();if(!message||!me)return;if(message.length>250)return alert('250 тэмдэгтээс урт байж болохгүй.');chatInput.value='';const {error}=await sb.from('chat_messages').insert({user_id:me.id,display_name:me.name,message});if(error)alert('Чат илгээж чадсангүй: '+error.message)}
 
 let tournamentTimer=null,tournamentState=null,tournamentCorrect=0,tournamentWrong=0,tournamentStartedAt=0,tournamentQuestion=null,tournamentQuestions=[],tournamentPos=0;
-const FINAL_OPEN=new Date('2026-09-13T17:30:00+08:00').getTime(),FINAL_CLOSE=new Date('2026-09-13T17:30:00+08:00').getTime(),FINAL_RESULTS=new Date('2026-09-13T17:40:00+08:00').getTime();
-function finalPhase(){let n=Date.now();return n<FINAL_OPEN?'before':n<FINAL_CLOSE?'open':n<FINAL_RESULTS?'waiting':'results'}
-function finalCountdown(ms){ms=Math.max(0,ms);let d=Math.floor(ms/86400000),h=Math.floor(ms/3600000)%24,m=Math.floor(ms/60000)%60,sec=Math.floor(ms/1000)%60;return `${d?d+' өдөр ':''}${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`}
-async function refreshTournamentHome(){if(!me?.active)return;let ph=finalPhase(),html=`<b>🏆 ЭЦСИЙН ТЭМЦЭЭН</b><div class="tiny" style="margin:6px 0">📅 2026.09.13 · 17:30–17:30</div>`;if(ph==='before')html+=`<div class="muted">🔒 Эхлэхэд <b>${finalCountdown(FINAL_OPEN-Date.now())}</b></div>`;if(ph==='open')html+=`<div style="color:#86efac;font-weight:900">🟢 ТЭМЦЭЭН ЭХЭЛЛЭЭ</div><button class="btn" onclick="openTournamentWarning()">🏆 ТЭМЦЭЭНД ОРОХ</button><div class="tiny">17:30 хүртэл нэг удаа оролцоно.</div>`;if(ph==='waiting')html+=`<div class="muted">⏳ Тэмцээн хаагдлаа. Эцсийн дүн <b>17:40</b>-д гарна.</div>`;if(ph==='results')html+=`<button class="btn gold" onclick="showFinalResults()">🏆 ЭЦСИЙН ДҮН ХАРАХ</button>`;tournamentHome.innerHTML=html}
-function openTournamentWarning(){if(finalPhase()!=='open')return refreshTournamentHome();tournamentContent.innerHTML=`<div class="notice"><h2>⚠️ АНХААРУУЛГА</h2><p>Тэмцээн <b>10 асуулттай</b>. Та зөвхөн <b>1 удаа</b> оролцоно.</p><p><b>ЭХЛЭХ</b> дармагц таны хугацаа шууд хэмжигдэж эхэлнэ. 10 асуултаа дуусгавал таны тэмцээн дуусна.</p><p>Эхлээд зөв хариултын тоо, тэнцвэл хамгийн бага хугацаагаар байр эзэлнэ.</p></div><button class="btn gold" onclick="beginFinalTournament()">ЭХЛЭХ</button><button class="btn alt" onclick="backHome()">БУЦАХ</button>`;hidePages();tournamentPage.classList.remove('hidden')}
-async function beginFinalTournament(){if(finalPhase()!=='open')return alert('Оролцох хугацаа дууссан байна.');const {data:qs,error:qerr}=await sb.rpc('get_final_questions');if(qerr||!qs||qs.length!==10)return alert('10 асуулт бүрэн оруулаагүй байна. Admin асуултаа шалгана уу.');const {data:join,error}=await sb.rpc('join_final_tournament');if(error)return alert(error.message);if(join?.already_finished)return alert('Та энэ тэмцээнд аль хэдийн оролцсон байна.');tournamentQuestions=qs;tournamentPos=join?.answered_count||0;tournamentCorrect=join?.correct_count||0;tournamentWrong=join?.wrong_count||0;tournamentStartedAt=Date.now()-(join?.elapsed_ms||0);nextFinalQuestion();runFinalClock()}
-function runFinalClock(){clearInterval(tournamentTimer);const tick=()=>{let el=document.getElementById('tourTimer');if(el)el.textContent=fmtElapsed(Date.now()-tournamentStartedAt);if(Date.now()>=FINAL_CLOSE){clearInterval(tournamentTimer);forceFinalFinish()}};tick();tournamentTimer=setInterval(tick,100)}
-function fmtElapsed(ms){ms=Math.max(0,ms);let m=Math.floor(ms/60000),s=Math.floor(ms/1000)%60,cs=Math.floor(ms/10)%100;return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(cs).padStart(2,'0')}`}
-function nextFinalQuestion(){if(tournamentPos>=10)return finishFinalTournament();let q=tournamentQuestions[tournamentPos];tournamentQuestion=q;tournamentContent.innerHTML=`<div class="tiny">🏆 ЭЦСИЙН ТЭМЦЭЭН · ${tournamentPos+1}/10</div><div id="tourTimer" class="timer">00:00.00</div><div class="topline"><b>✅ ${tournamentCorrect}</b><span>❌ ${tournamentWrong}</span></div><div class="definition" style="margin-top:12px"><b>${escapeHtml(q.question)}</b></div>${[q.option_a,q.option_b,q.option_c,q.option_d].map((o,i)=>`<button class="btn alt" onclick="answerFinalTournament('${['A','B','C','D'][i]}')">${escapeHtml(o)}</button>`).join('')}`}
-async function answerFinalTournament(letter){if(Date.now()>=FINAL_CLOSE)return forceFinalFinish();let elapsed=Date.now()-tournamentStartedAt;const {data,error}=await sb.rpc('submit_final_answer',{p_question_no:tournamentQuestion.question_no,p_answer:letter,p_elapsed_ms:elapsed});if(error)return alert(error.message);if(data?.correct)tournamentCorrect++;else tournamentWrong++;tournamentPos++;nextFinalQuestion()}
-async function finishFinalTournament(){clearInterval(tournamentTimer);let elapsed=Date.now()-tournamentStartedAt;await sb.rpc('finish_final_tournament',{p_elapsed_ms:elapsed});tournamentContent.innerHTML=`<div class="notice"><h2>✅ Таны тэмцээн дууслаа</h2><p><b>${tournamentCorrect}/10</b> зөв</p><p>⏱ ${fmtElapsed(elapsed)}</p><p>🏆 Эцсийн байр <b>17:40</b>-д тодорно.</p></div><button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
-async function forceFinalFinish(){clearInterval(tournamentTimer);await sb.rpc('finish_final_tournament',{p_elapsed_ms:Math.min(Date.now()-tournamentStartedAt,FINAL_CLOSE-tournamentStartedAt)});tournamentContent.innerHTML=`<div class="notice"><h2>⏰ 17:30 боллоо</h2><p>Тэмцээн автоматаар хаагдлаа.</p><p>Эцсийн дүн 17:40-д гарна.</p></div><button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
-async function showFinalResults(){if(finalPhase()!=='results')return alert('Эцсийн дүн 17:40-д гарна.');hidePages();tournamentPage.classList.remove('hidden');const {data:rows,error}=await sb.rpc('get_final_results');if(error)return tournamentContent.innerHTML='<p>Дүн ачаалж чадсангүй.</p>';let winner=rows?.[0];tournamentContent.innerHTML=`${winner?`<div class="leaderHero"><div class="tiny">👑 ЭЦСИЙН ТЭМЦЭЭНИЙ ЯЛАГЧ</div><div class="leaderName">🏆 ${escapeHtml(winner.player_display_name)}</div><b>${winner.correct_count}/10 · ${fmtElapsed(winner.elapsed_ms)}</b></div>`:''}<h2>🏆 ЭЦСИЙН ДҮН</h2>${(rows||[]).map((x,i)=>`<div class="rankrow"><b>${i<3?['🥇','🥈','🥉'][i]:'#'+(i+1)}</b><div><b>${escapeHtml(x.player_display_name)}</b><div class="tiny">${x.correct_count}/10 зөв</div></div><b>${fmtElapsed(x.elapsed_ms)}</b></div>`).join('')}<button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
+const FINAL_OPEN=new Date('2026-09-13T17:00:00+08:00').getTime(),FINAL_CLOSE=new Date('2026-09-13T17:30:00+08:00').getTime(),FINAL_RESULTS=new Date('2026-09-13T17:40:00+08:00').getTime();
+
+
+
+// ===== 50 XP CHAT DUEL =====
+let duelChannel=null,duelPoll=null,currentDuel=null,duelQs=[],duelPos=0,duelCorrect=0,duelStarted=0,duelQStarted=0,duelTimer=null,duelElapsed=0;
+async function challengeDuel(uid,name){if(!me)return;if((me.xp||0)<50)return alert('⚠️ Дуэлд ороход хамгийн багадаа 50 XP хэрэгтэй.');if(!confirm(`⚔️ ${name}-г 50 XP-ийн дуэлд дуудах уу?\nЯлагч нийт 100 XP авна.`))return;const {data,error}=await sb.rpc('duel_create',{p_opponent:uid});if(error)return alert('Duel үүссэнгүй: '+error.message);alert('⚔️ Урилга илгээлээ!');watchDuels()}
+async function watchDuels(){if(!me)return;clearInterval(duelPoll);duelPoll=setInterval(checkDuels,2500);checkDuels();if(!duelChannel){duelChannel=sb.channel('xp-duels-'+me.id).on('postgres_changes',{event:'*',schema:'public',table:'xp_duels'},()=>checkDuels()).subscribe()}}
+async function checkDuels(){if(!me)return;const {data}=await sb.from('xp_duels').select('*,challenger:profiles!xp_duels_challenger_id_fkey(display_name),opponent:profiles!xp_duels_opponent_id_fkey(display_name)').or(`challenger_id.eq.${me.id},opponent_id.eq.${me.id}`).in('status',['pending','active']).order('created_at',{ascending:false}).limit(1);let d=data?.[0];if(!d)return;if(d.status==='pending'&&d.opponent_id===me.id&&!document.getElementById('duelInvite'))showDuelInvite(d);if(d.status==='active'&&(!currentDuel||currentDuel.id!==d.id))startDuel(d)}
+function showDuelInvite(d){let box=document.createElement('div');box.id='duelInvite';box.className='modal';box.innerHTML=`<div class="modalCard"><h2>⚔️ DUEL УРИЛГА</h2><div class="notice"><b>${escapeHtml(d.challenger?.display_name||'Тоглогч')}</b> таныг дуудлаа.<br>Бооцоо: <b>50 XP</b><br>Ялагч: <b>100 XP</b></div><button class="btn gold" onclick="respondDuel(${d.id},true)">✅ ХҮЛЭЭН АВАХ</button><button class="btn alt" onclick="respondDuel(${d.id},false)">❌ ТАТГАЛЗАХ</button></div>`;document.body.appendChild(box)}
+async function respondDuel(id,ok){const {error}=await sb.rpc('duel_respond',{p_duel:id,p_accept:ok});document.getElementById('duelInvite')?.remove();if(error)return alert(error.message);if(!ok)return;refreshStats();checkDuels()}
+function seeded(seed){return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}}
+function startDuel(d){currentDuel=d;toggleChat(false);hidePages();liveBattlePage.classList.remove('hidden');let rnd=seeded(d.seed),pool=[...Array(Math.min(24,Math.max(3,(me.unlocked||1)+1))).keys()];duelQs=[];for(let i=0;i<5;i++)duelQs.push(pool[Math.floor(rnd()*pool.length)]);duelPos=duelCorrect=duelElapsed=0;duelStarted=Date.now();renderDuelQ()}
+function renderDuelQ(){clearInterval(duelTimer);if(duelPos>=5)return submitDuel();let idx=duelQs[duelPos],rnd=seeded(currentDuel.seed+duelPos+99),others=[...Array(24).keys()].filter(x=>x!==idx).sort(()=>rnd()-.5).slice(0,3),opts=[idx,...others].sort(()=>rnd()-.5),remain=dailyLimit(idx);duelQStarted=Date.now();liveBattleContent.innerHTML=`<div class="tiny">⚔️ 50 XP DUEL</div><h2>Асуулт ${duelPos+1}/5</h2><div id="duelSec" class="examTimer">${remain}</div><div class="lawNo">4.1.${idx+1}</div><h2>${escapeHtml(DATA[idx][0])}</h2>${opts.map(i=>`<button class="btn alt soloOpt" onclick="answerDuel(${i})">${escapeHtml(DATA[i][1])}</button>`).join('')}`;duelTimer=setInterval(()=>{remain-=.1;let e=document.getElementById('duelSec');if(e)e.textContent=Math.max(0,remain).toFixed(1);if(remain<=0){clearInterval(duelTimer);duelElapsed+=dailyLimit(idx)*1000;duelPos++;renderDuelQ()}},100)}
+function answerDuel(i){clearInterval(duelTimer);duelElapsed+=Date.now()-duelQStarted;if(i===duelQs[duelPos])duelCorrect++;duelPos++;renderDuelQ()}
+async function submitDuel(){clearInterval(duelTimer);liveBattleContent.innerHTML=`<h2>⚔️ ${duelCorrect}/5</h2><div class="notice">Таны хариулт илгээгдлээ.<br>Нөгөө тоглогчийг хүлээж байна…</div>`;const {error}=await sb.rpc('duel_submit',{p_duel:currentDuel.id,p_correct:duelCorrect,p_elapsed_ms:Math.round(duelElapsed)});if(error)return liveBattleContent.innerHTML+=`<div class="feedback bad">${escapeHtml(error.message)}</div>`;waitDuelResult()}
+function waitDuelResult(){let id=currentDuel.id,tries=0,t=setInterval(async()=>{tries++;const {data:d}=await sb.from('xp_duels').select('*').eq('id',id).single();if(d?.status==='finished'){clearInterval(t);let tie=!d.winner_id,win=d.winner_id===me.id;liveBattleContent.innerHTML=`<div class="tiny">⚔️ DUEL ДУУСЛАА</div><h2>${tie?'🤝 ТЭНЦЛЭЭ':win?'🏆 ТА ЯЛЛАА!':'😵 ТА ЯЛАГДЛАА'}</h2><div class="notice">${tie?'50 XP буцаагдлаа.':win?'<b>+50 XP</b> цэвэр ашиг · Нийт 100 XP авлаа.':'<b>−50 XP</b>'}</div><button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`;currentDuel=null;refreshStats()}else if(tries>120){clearInterval(t)}},1500)}
+
+// ===== 30 MIN EXAM =====
+let dailyExamDone=false,dailyExamActive=false,dailyExamOrder=[],dailyExamPos=0,dailyExamCorrect=0,dailyExamWrong=0,dailyExamStreak=0,dailyExamBest=0,dailyExamStartedAt=0,dailyQuestionStartedAt=0,dailyExamTotalMs=0,dailyExamTimer=null,dailyExamLocked=false,dailyGateInterval=null,dailyNextAt=0;
+function examLocalKey(){return 'gamshig4_exam_last_'+(me?.username||'user')}
+function markExamDoneLocal(){try{localStorage.setItem(examLocalKey(),String(Date.now()))}catch(e){}}
+function getExamLastLocal(){try{return Number(localStorage.getItem(examLocalKey())||0)}catch(e){return 0}}
+function fmtWait(ms){let sec=Math.max(0,Math.ceil(ms/1000)),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function guardDaily(fn){if(!dailyExamDone){alert('📝 Шалгалт бэлэн болсон байна. Эхлээд 5 асуултын шалгалтаа өгнө үү.');return openDailyExam()}fn()}
+function setExamGateState(nextAt){
+ dailyNextAt=nextAt||0;
+ const now=Date.now(),waiting=dailyNextAt>now;
+ dailyExamDone=waiting;
+ document.querySelectorAll('.dailyLocked').forEach(x=>x.classList.toggle('lockedAction',!waiting));
+ if(waiting){
+   dailyExamGate.innerHTML=`<div class="notice" style="border-color:#22c55e;background:#0b2a1a"><b>🟢 ДАРААГИЙН ШАЛГАЛТ</b><div id="nextExamClock" style="font-size:34px;font-weight:1000;margin:5px 0">${fmtWait(dailyNextAt-now)}</div><div class="tiny">Хугацаа дуусмагц шалгалт бэлэн болно. Одоогоор бүх хэсэг нээлттэй.</div></div>`;
+ }else{
+   dailyExamGate.innerHTML=`<div class="examLock" style="border-color:#ef4444;background:#351014"><b>🔴 ШАЛГАЛТ БЭЛЭН</b><div class="tiny" style="margin:6px 0">5 асуулт · таны нээсэн түвшнээс · богино 10 сек · урт 15 сек</div><button class="btn gold" onclick="openDailyExam()">📝 ШАЛГАЛТАА ӨГӨХ</button></div>`;
+ }
+}
+function startExamGateTicker(){
+ clearInterval(dailyGateInterval);
+ dailyGateInterval=setInterval(()=>{
+   if(!dailyNextAt)return;
+   const left=dailyNextAt-Date.now(),el=document.getElementById('nextExamClock');
+   if(left>0){if(el)el.textContent=fmtWait(left)}else{dailyNextAt=0;setExamGateState(0)}
+ },1000)
+}
+async function refreshDailyExamGate(){
+ if(!me)return;
+ let nextAt=0,serverOk=false;
+ try{
+   const {data,error}=await sb.rpc('exam_30min_status');
+   if(!error&&data){serverOk=true;nextAt=data.next_at?new Date(data.next_at).getTime():0}
+ }catch(e){}
+ if(!serverOk){const last=getExamLastLocal();if(last)nextAt=last+30*60*1000}
+ setExamGateState(nextAt);
+ startExamGateTicker();
+}
+function dailyLimit(idx){return DATA[idx][1].trim().split(/\s+/).length>=24?15:10}
+function openDailyExam(){
+ if(dailyNextAt>Date.now())return alert('🟢 Дараагийн шалгалт '+fmtWait(dailyNextAt-Date.now())+' дараа бэлэн болно.');
+ hidePages();dailyExamPage.classList.remove('hidden');
+ dailyExamContent.innerHTML=`<h2>📝 30 МИНУТЫН ШАЛГАЛТ</h2><div class="notice">Нэг шалгалт <b>5 асуулттай</b>.<br>Таны нээсэн нэр томьёонууд + дараагийн нэр томьёоноос хольж асууна.<br>Богино хариулт <b>10 сек</b> · Урт хариулт <b>15 сек</b>.<br>Дууссаны дараа дараагийн шалгалт <b>30 минутын дараа</b> бэлэн болно.</div><button class="btn gold" onclick="startDailyExam()">▶ ЭХЛҮҮЛЭХ</button>`
+}
+function startDailyExam(){dailyExamActive=true;const poolSize=Math.min(24,Math.max(3,(me?.unlocked||1)+1));const pool=[...Array(poolSize).keys()];dailyExamOrder=[];while(dailyExamOrder.length<5){dailyExamOrder.push(...shuffled(pool))}dailyExamOrder=dailyExamOrder.slice(0,5);dailyExamPos=0;dailyExamCorrect=0;dailyExamWrong=0;dailyExamStreak=0;dailyExamBest=0;dailyExamTotalMs=0;dailyExamStartedAt=Date.now();renderDailyQuestion()}
+function renderDailyQuestion(){clearInterval(dailyExamTimer);if(dailyExamPos>=5)return showDailyFinishButton();dailyExamLocked=false;const idx=dailyExamOrder[dailyExamPos],limit=dailyLimit(idx);dailyQuestionStartedAt=Date.now();let pool=shuffled([...Array(24).keys()].filter(i=>i!==idx)).slice(0,3),opts=shuffled([idx,...pool]);dailyExamContent.innerHTML=`<div class="examMeta"><b>📝 Асуулт ${dailyExamPos+1}/5 · Хариулсан ${dailyExamPos}/5</b><b>✅ ${dailyExamCorrect} · ❌ ${dailyExamWrong}</b></div><div id="dailyTimer" class="examTimer">${limit}</div><div class="progress"><div id="dailyTimerBar" class="bar" style="width:100%"></div></div><div class="lawNo">4.1.${idx+1}</div><h2>${escapeHtml(DATA[idx][0])}</h2><p class="muted">Зөв тодорхойлолтыг сонго.</p>${opts.map(i=>`<button class="btn alt soloOpt" onclick="answerDaily(${i})">${escapeHtml(DATA[i][1])}</button>`).join('')}`;let remain=limit;dailyExamTimer=setInterval(()=>{remain-=.1;let el=document.getElementById('dailyTimer'),bar=document.getElementById('dailyTimerBar');if(el)el.textContent=Math.max(0,remain).toFixed(1);if(bar)bar.style.width=Math.max(0,remain/limit*100)+'%';if(remain<=0){clearInterval(dailyExamTimer);timeoutDaily()}},100)}
+function answerDaily(choice){if(dailyExamLocked)return;dailyExamLocked=true;clearInterval(dailyExamTimer);const idx=dailyExamOrder[dailyExamPos];dailyExamTotalMs+=Date.now()-dailyQuestionStartedAt;if(choice===idx){dailyExamCorrect++;dailyExamStreak++;dailyExamBest=Math.max(dailyExamBest,dailyExamStreak)}else{dailyExamWrong++;dailyExamStreak=0}dailyExamPos++;if(dailyExamPos>=5){showDailyFinishButton();return}setTimeout(renderDailyQuestion,180)}
+function timeoutDaily(){if(dailyExamLocked)return;dailyExamLocked=true;dailyExamWrong++;dailyExamStreak=0;dailyExamTotalMs+=dailyLimit(dailyExamOrder[dailyExamPos])*1000;dailyExamPos++;if(dailyExamPos>=5){showDailyFinishButton();return}dailyExamContent.innerHTML=`<div class="feedback bad">⏰ Хугацаа дууслаа</div>`;setTimeout(renderDailyQuestion,350)}
+function showDailyFinishButton(){
+ clearInterval(dailyExamTimer);dailyExamActive=true;dailyExamLocked=true;
+ dailyExamContent.innerHTML=`<div class="tiny">📝 5/5 АСУУЛТАД ХАРИУЛЛАА</div><h2>Бүх асуултад хариуллаа ✅</h2><div class="notice">Одоо доорх товчийг дарахад таны <b>дүн, хувь, хурд, streak, нийт хугацаа</b> шууд гарна.</div><button id="dailyFinishBtn" class="btn gold" type="button">✅ ШАЛГАЛТАА ДУУСГАХ</button>`;
+ const btn=document.getElementById('dailyFinishBtn');
+ if(btn)btn.addEventListener('click',()=>finishDailyExam(),{once:true});
+}
+function finishDailyExam(){
+ clearInterval(dailyExamTimer);dailyExamActive=false;dailyExamLocked=true;
+ const total=5;
+ const pct=Math.round((dailyExamCorrect/total)*100);
+ const avg=dailyExamTotalMs/total/1000;
+ const wrong=Math.max(0,total-dailyExamCorrect);
+ const now=Date.now();
+ markExamDoneLocal();
+ setExamGateState(now+30*60*1000);startExamGateTicker();
+ // Дүнг тусдаа overlay дээр харуулна. Ингэснээр ямар ч refresh/server call дүнг дарж солихгүй.
+ let old=document.getElementById('examResultOverlay');if(old)old.remove();
+ const ov=document.createElement('div');
+ ov.id='examResultOverlay';
+ ov.style.cssText='position:fixed;inset:0;z-index:999999;background:rgba(2,8,23,.96);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto';
+ ov.innerHTML=`<div style="width:min(620px,100%);background:#10243b;border:1px solid #31506f;border-radius:24px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.5)"><div class="tiny">📝 ШАЛГАЛТ ДУУСЛАА</div><h1 style="font-size:42px;margin:8px 0">${dailyExamCorrect}/${total} · ${pct}%</h1><div class="rankrow"><b>✅</b><div><b>Зөв хариулт</b></div><b>${dailyExamCorrect}</b></div><div class="rankrow"><b>❌</b><div><b>Буруу хариулт</b></div><b>${wrong}</b></div><div class="rankrow"><b>⚡</b><div><b>Таны хурд</b><div class="tiny">1 асуултад дунджаар</div></div><b>${avg.toFixed(1)} сек</b></div><div class="rankrow"><b>🔥</b><div><b>Best streak</b></div><b>${dailyExamBest}</b></div><div class="rankrow"><b>⏱️</b><div><b>Нийт хугацаа</b></div><b>${fmtElapsed(dailyExamTotalMs)}</b></div><div class="feedback ok">🟢 Дараагийн шалгалт <b>30:00</b> дараа бэлэн болно.</div><div id="dailySaveState" class="feedback ok">✅ Дүн гарлаа · Бусад тоглоом нээгдлээ.</div><button id="examResultHomeBtn" class="btn" type="button">🏠 НҮҮР РҮҮ</button></div>`;
+ document.body.appendChild(ov);
+ document.getElementById('examResultHomeBtn')?.addEventListener('click',()=>{ov.remove();backHome()},{once:true});
+ // Сервер хадгалалт нь дүнгийн дэлгэцээс тусдаа ажиллана.
+ Promise.resolve(sb.rpc('submit_exam_30min',{p_correct:dailyExamCorrect,p_total:total,p_elapsed_ms:Math.round(dailyExamTotalMs),p_best_streak:dailyExamBest}))
+ .then(({data,error})=>{const st=document.getElementById('dailySaveState');if(error){if(st){st.className='feedback bad';st.innerHTML='⚠️ Дүн гарсан. Харин серверт хадгалах үед алдаа гарлаа.'}}else{if(st)st.innerHTML='✅ Дүн хадгалагдлаа · Бусад тоглоом нээгдлээ.';if(data?.next_at){setExamGateState(new Date(data.next_at).getTime());startExamGateTicker()}}})
+ .catch(()=>{const st=document.getElementById('dailySaveState');if(st){st.className='feedback bad';st.innerHTML='⚠️ Дүн гарсан. Сервер хадгалалт түр амжилтгүй.'}})
+}
+window.finishDailyExam=finishDailyExam;
+function confirmExamExit(){if(dailyExamActive){if(!confirm('Шалгалт дуусаагүй байна. Гарвал бүртгэгдэхгүй. Гарах уу?'))return;clearInterval(dailyExamTimer);dailyExamActive=false}backHome()}
+async function showExamLeaderboard(){hidePages();examLeaderboardPage.classList.remove('hidden');examLeaderRows.innerHTML='<p class="muted">Ачаалж байна…</p>';const {data,error}=await sb.rpc('get_exam_leaderboard');if(error){examLeaderRows.innerHTML='<div class="feedback bad">30 минутын шалгалтын SQL суулгаагүй байна. UPDATE_30MIN_EXAM.sql-г Supabase дээр RUN хийнэ үү.</div>';return}examLeaderRows.innerHTML=(data||[]).map((x,i)=>`<div class="rankrow ${x.player_username===me.username?'me':''}"><b>${i<3?['🥇','🥈','🥉'][i]:'#'+(i+1)}</b><div><b>${escapeHtml(x.player_display_name)}</b><div class="tiny">${x.exam_days} шалгалт · 🔥 ${x.current_streak||0}</div></div><b>${Number(x.avg_percent).toFixed(1)}%</b></div>`).join('')||'<p class="muted">Одоогоор үр дүн алга.</p>'}
+async function showExamHistory(){hidePages();examHistoryPage.classList.remove('hidden');examHistoryRows.innerHTML='<p class="muted">Ачаалж байна…</p>';const {data,error}=await sb.rpc('get_my_exam_history');if(error){examHistoryRows.innerHTML='<div class="feedback bad">30 минутын шалгалтын SQL суулгаагүй байна. UPDATE_30MIN_EXAM.sql-г Supabase дээр RUN хийнэ үү.</div>';return}examHistoryRows.innerHTML=(data||[]).map(x=>`<div class="rankrow"><b>${new Date(x.created_at).toLocaleString('mn-MN',{timeZone:'Asia/Ulaanbaatar',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}</b><div><b>${x.correct_count}/${x.total_count} · ${Number(x.percent).toFixed(0)}%</b><div class="tiny">🔥 ${x.best_streak} · ${fmtElapsed(x.elapsed_ms)}</div></div><b>✅</b></div>`).join('')||'<p class="muted">Шалгалтын түүх алга.</p>'}
+
+// ===== RECALL LAB: VOICE + WRITTEN =====
+let recallIndex=0, recallRecognition=null, recallTranscript='';
+function recallUnlockedCount(){return Math.max(1,Math.min(24,me?.unlocked||1))}
+function openRecall(){
+  hidePages();recallPage.classList.remove('hidden');
+  recallIndex=Math.max(0,Math.min(recallUnlockedCount()-1,recallIndex));renderRecallHome();
+}
+function recallSelectHtml(){return `<select id="recallTerm" class="input" onchange="recallIndex=+this.value;renderRecallHome()">${DATA.slice(0,recallUnlockedCount()).map((x,i)=>`<option value="${i}" ${i===recallIndex?'selected':''}>№${i+1} · ${escapeHtml(x[0])}</option>`).join('')}</select>`}
+function renderRecallHome(){
+ recallContent.innerHTML=`<h2>🧠 ЦЭЭЖЭЭР ШАЛГУУЛАХ</h2><p class="muted">Нэр томьёогоо сонгоод тодорхойлолтыг харалгүйгээр хэлэх эсвэл бичнэ.</p>${recallSelectHtml()}<div class="notice"><b>№${recallIndex+1} · ${escapeHtml(DATA[recallIndex][0])}</b><div class="tiny" style="margin-top:5px">Тодорхойлолт нууцлагдсан 🔒</div></div><button class="btn" onclick="startRecallVoice()">🎙️ ЯРЬЖ ШАЛГУУЛАХ</button><button class="btn gold" onclick="startRecallWrite()">⌨️ БИЧИЖ ШАЛГУУЛАХ</button><div class="tiny muted" style="margin-top:8px">Voice танилт нь browser/төхөөрөмжөөс хамаарна. Ажиллахгүй бол бичиж шалгуулахыг ашиглаарай.</div>`;
+}
+function startRecallWrite(){
+ recallContent.innerHTML=`<button class="btn alt exitLearn" onclick="renderRecallHome()">← СОНГОЛТ РУУ</button><div class="tiny">⌨️ БИЧГИЙН ШАЛГАЛТ · №${recallIndex+1}</div><h2>${escapeHtml(DATA[recallIndex][0])}</h2><p class="muted">Тодорхойлолтыг бүтнээр нь цээжээр бич.</p><textarea id="recallAnswer" class="input" style="min-height:180px" placeholder="Энд цээжээрээ бичнэ..."></textarea><button class="btn gold" onclick="gradeRecall(document.getElementById('recallAnswer').value,'write')">ШАЛГАХ</button>`;
+ setTimeout(()=>document.getElementById('recallAnswer')?.focus(),50)
+}
+function startRecallVoice(){
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){alert('Энэ browser voice танилтыг дэмжихгүй байна. Chrome/Edge дээр туршаарай.');return}
+ stopRecallVoice(); recallTranscript=''; recallRecognition=new SR(); recallRecognition.lang='mn-MN'; recallRecognition.continuous=true; recallRecognition.interimResults=true;
+ recallContent.innerHTML=`<button class="btn alt exitLearn" onclick="stopRecallVoice();renderRecallHome()">← СОНГОЛТ РУУ</button><div class="tiny">🎙️ VOICE RECALL · №${recallIndex+1}</div><h2>${escapeHtml(DATA[recallIndex][0])}</h2><div class="notice"><b>🔴 Сонсож байна...</b><div class="tiny">Тодорхойлолтоо бүтнээр нь хэлээд ДУУСГАХ дар.</div></div><div id="voiceLive" class="definition" style="min-height:100px">…</div><button class="btn gold" onclick="finishRecallVoice()">⏹ ДУУСГАХ & ШАЛГАХ</button>`;
+ recallRecognition.onresult=e=>{let final='';let interim='';for(let i=0;i<e.results.length;i++){let t=e.results[i][0].transcript;if(e.results[i].isFinal)final+=t+' ';else interim+=t} recallTranscript=(final+interim).trim();let el=document.getElementById('voiceLive');if(el)el.textContent=recallTranscript||'…'};
+ recallRecognition.onerror=e=>{if(e.error!=='aborted')alert('Voice танилтын алдаа: '+e.error)};
+ try{recallRecognition.start()}catch(e){alert('Микрофон эхлүүлж чадсангүй. Permission-ээ шалгаарай.')}
+}
+function stopRecallVoice(){if(recallRecognition){try{recallRecognition.abort()}catch(e){} recallRecognition=null}}
+function finishRecallVoice(){let t=recallTranscript;stopRecallVoice();if(!t.trim())return alert('Яриа танигдсангүй. Дахин оролдоорой.');gradeRecall(t,'voice')}
+function recallWords(v){return normalize(v).replace(/-/g,' ').split(' ').filter(Boolean)}
+function lcsPairs(a,b){let n=a.length,m=b.length,dp=Array.from({length:n+1},()=>new Uint16Array(m+1));for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)dp[i][j]=a[i]===b[j]?dp[i+1][j+1]+1:Math.max(dp[i+1][j],dp[i][j+1]);let i=0,j=0,p=[];while(i<n&&j<m){if(a[i]===b[j]){p.push([i,j]);i++;j++}else if(dp[i+1][j]>=dp[i][j+1])i++;else j++}return p}
+async function gradeRecall(answer,kind){
+ let target=DATA[recallIndex][1],tw=recallWords(target),aw=recallWords(answer),pairs=lcsPairs(tw,aw),matched=new Set(pairs.map(x=>x[0]));let pct=Math.round(100*pairs.length/Math.max(1,tw.length));
+ let xpGain=pct>=95?100:pct>=90?70:pct>=80?40:0; if(me&&pct>=95){me.mastery[recallIndex]=Math.max(me.mastery[recallIndex]||0,100)} else if(me&&pct>=80){me.mastery[recallIndex]=Math.max(me.mastery[recallIndex]||0,pct)}
+ if(me&&xpGain){me.xp+=xpGain;me.streak=(me.streak||0)+1;await persist();showXp(xpGain)}
+ let marked=tw.map((w,i)=>matched.has(i)?`<span style="color:#86efac">${escapeHtml(w)}</span>`:`<span style="color:#fca5a5;text-decoration:underline">${escapeHtml(w)}</span>`).join(' ');
+ recallContent.innerHTML=`<button class="btn alt exitLearn" onclick="renderRecallHome()">← ДАХИН ШАЛГУУЛАХ</button><div class="tiny">${kind==='voice'?'🎙️ VOICE':'⌨️ БИЧГИЙН'} ҮР ДҮН</div><h2>${escapeHtml(DATA[recallIndex][0])}</h2><div class="leaderHero"><div class="tiny">🎯 НАРИЙВЧЛАЛ</div><div class="leaderName">${pct}%</div><b>${xpGain?`+${xpGain} XP`:'XP авахын тулд 80%+'}</b></div><div class="notice"><b>Таны хариулт</b><div style="margin-top:7px">${escapeHtml(answer)}</div></div><div class="definition"><b>Эхтэй харьцуулсан нь</b><div style="margin-top:9px;line-height:1.8">${marked}</div></div>${pct>=95?'<div class="notice">⭐ PERFECT MEMORY — энэ нэр томьёо 100% mastery боллоо!</div>':''}<button class="btn" onclick="recallIndex=(recallIndex+1)%recallUnlockedCount();renderRecallHome()">ДАРААГИЙН НЭР ТОМЬЁО →</button>`;
+ refreshStats();
+}
+
+// ===== BATTLE: SOLO SURVIVAL + LIVE =====
+let soloTime=60,soloTimerId=null,soloCorrect=0,soloWrong=0,soloScore=0,soloStreak=0,soloBestStreak=0,soloStartedAt=0,soloQ=null,soloLocked=false;
+function openLiveBattle(){stopSoloTimer();hidePages();liveBattlePage.classList.remove('hidden');liveBattleContent.innerHTML=`<h2>⚡ BATTLE</h2><p class="muted">Тоглох төрлөө сонго.</p><div class="battleChoice"><div class="menu" onclick="startSoloBattle()"><b style="font-size:20px">👤 ГАНЦААРАА</b><span class="muted">TIME SURVIVAL</span><span class="tiny">60 сек · Зөв +5 · Буруу −10</span></div><div class="menu" onclick="openMultiplayerBattle()"><b style="font-size:20px">👥 ОЛУУЛАА</b><span class="muted">LIVE BATTLE</span><span class="tiny">Түрүүлж зөв хариулаад өндөр оноо ав</span></div></div>`}
+function startSoloBattle(){soloTime=60;soloCorrect=0;soloWrong=0;soloScore=0;soloStreak=0;soloBestStreak=0;soloStartedAt=Date.now();soloLocked=false;nextSoloQuestion();stopSoloTimer();soloTimerId=setInterval(()=>{soloTime=Math.max(0,soloTime-.1);updateSoloHud();if(soloTime<=0)finishSoloBattle()},100)}
+function stopSoloTimer(){if(soloTimerId){clearInterval(soloTimerId);soloTimerId=null}}
+function updateSoloHud(){let t=document.getElementById('soloTimer'),sc=document.getElementById('soloScore'),co=document.getElementById('soloCombo');if(t)t.textContent=soloTime.toFixed(1);if(sc)sc.textContent=soloScore;if(co)co.textContent='🔥 '+soloStreak}
+function nextSoloQuestion(){soloLocked=false;const idx=Math.floor(Math.random()*24),correct=DATA[idx][1];let pool=DATA.map((x,i)=>i).filter(i=>i!==idx);pool=shuffled(pool).slice(0,3);let opts=shuffled([idx,...pool]);soloQ={idx,correct};liveBattleContent.innerHTML=`<div class="tiny">👤 TIME SURVIVAL</div><div class="soloTimer" id="soloTimer">${soloTime.toFixed(1)}</div><div class="soloScore"><b>ОНОО: <span id="soloScore">${soloScore}</span></b><b id="soloCombo">🔥 ${soloStreak}</b></div><div class="progress"><div class="bar" style="width:${Math.min(100,soloTime/60*100)}%"></div></div><h2>№${idx+1} · ${escapeHtml(DATA[idx][0])}</h2><p class="muted">Зөв тодорхойлолтыг хурдан сонго!</p>${opts.map(i=>`<button class="btn alt soloOpt" onclick="answerSolo(${i},this)">${escapeHtml(DATA[i][1])}</button>`).join('')}<button class="btn alt" onclick="finishSoloBattle(true)">ГАРАХ</button>`;updateSoloHud()}
+function answerSolo(i,btn){if(soloLocked||soloTime<=0)return;soloLocked=true;if(i===soloQ.idx){soloCorrect++;soloStreak++;soloBestStreak=Math.max(soloBestStreak,soloStreak);let bonus=soloStreak>=10?200:100;soloScore+=bonus;soloTime+=5;btn.classList.remove('alt');btn.textContent='✅ ЗӨВ!  +5 сек · +'+bonus;setTimeout(nextSoloQuestion,350)}else{soloWrong++;soloTime=Math.max(0,soloTime-10);soloStreak=0;btn.textContent='❌ БУРУУ · −10 сек';setTimeout(nextSoloQuestion,500)}updateSoloHud()}
+async function finishSoloBattle(exited=false){if(!soloTimerId&&!soloStartedAt)return;stopSoloTimer();const elapsed=Math.max(0,Date.now()-soloStartedAt);const gained=Math.min(100,Math.max(0,Math.floor(soloScore/10))),answered=soloCorrect+soloWrong,accuracy=answered?Math.round(soloCorrect/answered*100):0,speed=elapsed?soloCorrect/(elapsed/60000):0;if(me&&gained>0){me.xp+=gained;await persist();showXp(gained)}soloStartedAt=0;liveBattleContent.innerHTML=`<div class="tiny">${exited?'ТОГЛООМ ДУУСЛАА':'⏰ ХУГАЦАА ДУУСЛАА'}</div><h2>👤 TIME SURVIVAL</h2><div class="leaderHero"><div class="tiny">НИЙТ ОНОО</div><div class="leaderName">${soloScore.toLocaleString()}</div><b>+${gained} XP · MAX 100 XP</b></div><div class="rankrow"><b>⚡</b><div><b>Таны хурд</b></div><b>${speed.toFixed(1)} зөв/мин</b></div><div class="rankrow"><b>🎯</b><div><b>Accuracy</b></div><b>${accuracy}%</b></div><div class="rankrow"><b>✅</b><div><b>Зөв / Буруу</b></div><b>${soloCorrect} / ${soloWrong}</b></div><div class="rankrow"><b>🔥</b><div><b>Best streak</b></div><b>${soloBestStreak}</b></div><div class="rankrow"><b>⏱️</b><div><b>Тэссэн хугацаа</b></div><b>${fmtElapsed(elapsed)}</b></div><button class="btn gold" onclick="startSoloBattle()">↻ ДАХИН ТОГЛОХ</button><button class="btn alt" onclick="openLiveBattle()">BATTLE СОНГОЛТ</button>`}
+function openMultiplayerBattle(){stopSoloTimer();liveBattleContent.innerHTML=`<h2>👥 LIVE QUIZ BATTLE</h2><div class="notice"><b>Олуулаа тоглох</b><p class="muted">Нэг өрөөнд орсон тоглогчдод ижил асуулт гарч, зөв хариулсан дарааллаар оноо авна.</p></div><input id="battleCode" class="input code" maxlength="6" placeholder="ROOM CODE"><button class="btn" onclick="battleJoin()">ӨРӨӨНД ОРОХ</button><button class="btn gold" onclick="battleCreate()">+ ШИНЭ ӨРӨӨ ҮҮСГЭХ</button><button class="btn alt" onclick="openLiveBattle()">← BATTLE СОНГОЛТ</button><div class="tiny muted">LIVE_BATTLE_SQL.sql-ийг Supabase дээр нэг удаа ажиллуулсны дараа room хэсэг ажиллана.</div>`}
+async function battleCreate(){let code=Math.random().toString(36).slice(2,8).toUpperCase();let {data,error}=await sb.rpc('battle_create_room',{p_code:code});if(error)return alert('LIVE Battle SQL хэрэгтэй: '+error.message);battleLobby(code,true,data)}
+async function battleJoin(){let code=(document.getElementById('battleCode').value||'').trim().toUpperCase();if(!code)return alert('Room code оруулна уу.');let {data,error}=await sb.rpc('battle_join_room',{p_code:code});if(error)return alert(error.message);battleLobby(code,false,data)}
+function battleLobby(code,host){liveBattleContent.innerHTML=`<div class="tiny">👥 LIVE QUIZ BATTLE</div><h2>ROOM: ${escapeHtml(code)}</h2><div class="notice">${host?'👑 Та host байна.':'✅ Өрөөнд орлоо.'}<br><span class="muted">Room холболтын TEST.</span></div>${host?`<button class="btn gold" onclick="alert('Synchronized round дараагийн server update-д идэвхжинэ.')">▶ BATTLE ЭХЛҮҮЛЭХ</button>`:''}<button class="btn alt" onclick="openLiveBattle()">ГАРАХ</button>`}
+async function showFinalResults(){if(finalPhase()!=='results')return alert('Тэмцээний дүн 17:40-д гарна.');hidePages();tournamentPage.classList.remove('hidden');const {data:rows,error}=await sb.rpc('get_final_results');if(error)return tournamentContent.innerHTML='<p>Дүн ачаалж чадсангүй.</p>';let winner=rows?.[0];tournamentContent.innerHTML=`${winner?`<div class="leaderHero"><div class="tiny">👑 ТЭМЦЭЭНИЙ ЯЛАГЧ</div><div class="leaderName">🏆 ${escapeHtml(winner.player_display_name)}</div><b>${winner.correct_count}/10 · ${fmtElapsed(winner.elapsed_ms)}</b></div>`:''}<h2>🏆 ТЭМЦЭЭНИЙ ДҮН</h2>${(rows||[]).map((x,i)=>`<div class="rankrow"><b>${i<3?['🥇','🥈','🥉'][i]:'#'+(i+1)}</b><div><b>${escapeHtml(x.player_display_name)}</b><div class="tiny">${x.correct_count}/10 зөв</div></div><b>${fmtElapsed(x.elapsed_ms)}</b></div>`).join('')}<button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
 async function adminLoadFinalQuestions(){const ok=await checkAdmin();if(!ok)return;const {data}=await sb.rpc('admin_get_final_questions');let map=new Map((data||[]).map(q=>[q.question_no,q]));adminQuestionEditor.innerHTML=Array.from({length:10},(_,i)=>{let n=i+1,q=map.get(n)||{};return `<div class="notice" style="margin:10px 0"><b>Асуулт ${n}</b><textarea class="input" id="fq${n}" placeholder="Асуулт">${escapeHtml(q.question||'')}</textarea>${['a','b','c','d'].map(x=>`<input class="input" id="fo${x}${n}" placeholder="${x.toUpperCase()} хариулт" value="${escapeHtml(q['option_'+x]||'')}">`).join('')}<select class="input" id="fans${n}"><option ${q.correct_option==='A'?'selected':''}>A</option><option ${q.correct_option==='B'?'selected':''}>B</option><option ${q.correct_option==='C'?'selected':''}>C</option><option ${q.correct_option==='D'?'selected':''}>D</option></select></div>`}).join('')}
 async function adminSaveFinalQuestions(){for(let n=1;n<=10;n++){let payload={p_question_no:n,p_question:document.getElementById('fq'+n).value.trim(),p_option_a:document.getElementById('foa'+n).value.trim(),p_option_b:document.getElementById('fob'+n).value.trim(),p_option_c:document.getElementById('foc'+n).value.trim(),p_option_d:document.getElementById('fod'+n).value.trim(),p_correct_option:document.getElementById('fans'+n).value};if(!payload.p_question||!payload.p_option_a||!payload.p_option_b||!payload.p_option_c||!payload.p_option_d)return alert('Асуулт '+n+' дутуу байна.');let {error}=await sb.rpc('admin_save_final_question',payload);if(error)return alert('Алдаа: '+error.message)}alert('✅ 10 асуулт хадгалагдлаа.')}
 
@@ -430,7 +585,7 @@ sb.auth.onAuthStateChange(()=>setTimeout(loadSession,0)); loadSession();
       <div id="adminPromoMsg" class="muted" style="margin-top:8px"></div>
     </div>
 
-    <div class="tournamentCard"><h3>🏆 Эцсийн тэмцээн</h3><div class="tiny">2026.09.13 · 17:30–17:30 · Дүн 17:40</div><button class="btn gold" onclick="adminLoadFinalQuestions()">10 АСУУЛТ ЗАСАХ</button><div id="adminQuestionEditor"></div><button class="btn" onclick="adminSaveFinalQuestions()">💾 10 АСУУЛТ ХАДГАЛАХ</button></div><div style="margin-top:22px">
+    <div class="tournamentCard"><h3>🏆 Тэмцээн</h3><div class="tiny">2026.09.13 · 17:00–17:30 · Дүн 17:40</div><button class="btn gold" onclick="adminLoadFinalQuestions()">10 АСУУЛТ ЗАСАХ</button><div id="adminQuestionEditor"></div><button class="btn" onclick="adminSaveFinalQuestions()">💾 10 АСУУЛТ ХАДГАЛАХ</button></div><div style="margin-top:22px">
       <div class="row" style="justify-content:space-between;align-items:center">
         <h3 style="margin:0">Promo code-ууд</h3>
         <button class="btn secondary" onclick="loadAdminPromos()">🔄 Шинэчлэх</button>
@@ -452,7 +607,7 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
 
 <script>
 (function(){
-  const START = new Date('2026-09-13T17:30:00+08:00').getTime();
+  const START = new Date('2026-09-13T17:00:00+08:00').getTime();
   function updateContestLabel(){
     const now = Date.now();
     const els = document.querySelectorAll(
@@ -464,7 +619,7 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
       if(now < START){
         if(/countdown|секунд|өдөр|цаг|минут/i.test(txt)){
           const label=document.createElement('div');
-          label.textContent='🔒 9-р сарын 13-ны 17:30-д эхэлнэ';
+          label.textContent='🔒 9-р сарын 13-ны 17:00-д эхэлнэ';
           label.style.fontWeight='700';
           label.style.textAlign='center';
           el.textContent='';
@@ -528,6 +683,7 @@ setInterval(async function(){
     me.active=p.is_active;me.access_expires_at=p.access_expires_at;
     if(!me.active || (me.access_expires_at && new Date(me.access_expires_at).getTime()<=Date.now())){
       me.active=false; openByState();
+ watchDuels();
     } else renderAccessStatus();
   }catch(e){console.error(e)}
 },60000);
