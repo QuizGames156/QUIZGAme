@@ -1,0 +1,26 @@
+{
+  "name": "Гамшгаас хамгаалах тухай — 4-р бүлэг",
+  "short_name": "Гамшиг 4",
+  "description": "24 нэр томьёог дарааллаар нь цээжлэх сургалтын тоглоом",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071b14",
+  "theme_color": "#071b14",
+  "orientation": "portrait-primary",
+  "lang": "mn",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

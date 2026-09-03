@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08111f">
+<title>Гамшгаас хамгаалах тухай — 4-р бүлэг</title>
+<style>
+*{box-sizing:border-box} :root{--bg:#07111f;--card:#0f1d30;--card2:#14253b;--line:#28405e;--text:#f8fafc;--muted:#9fb0c5;--green:#22c55e;--red:#ef4444;--gold:#f59e0b;--blue:#38bdf8}
+body{margin:0;background:radial-gradient(circle at top,#17345a 0,#08111f 38%,#050b13 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+.wrap{width:min(760px,100%);margin:auto;padding:16px 14px 90px}.card{background:linear-gradient(180deg,#12233aee,#0c1828ee);border:1px solid #29425f;border-radius:24px;padding:18px;margin:12px 0;box-shadow:0 18px 60px #0007}
+.hero{text-align:center;padding:28px 18px}.seal{width:78px;height:78px;border-radius:24px;margin:auto;display:grid;place-items:center;font-size:38px;background:linear-gradient(145deg,#dc2626,#7f1d1d);box-shadow:0 10px 35px #ef444455}
+h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{color:#cbd5e1}.tiny,.muted{color:var(--muted);font-size:13px}.hidden{display:none!important}
+.input,textarea{width:100%;border:1px solid #38516e;background:#081421;color:#fff;border-radius:14px;padding:14px;margin:6px 0;font-size:16px;outline:none}.input:focus,textarea:focus{border-color:var(--blue)}
+.btn{width:100%;border:0;border-radius:15px;padding:14px 15px;margin-top:9px;font-weight:850;font-size:15px;cursor:pointer;background:linear-gradient(135deg,#22c55e,#16a34a);color:#052e16}.btn.alt{background:#1e344e;color:white;border:1px solid #38516e}.btn.gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#3b2100}.btn.red{background:#7f1d1d;color:#fff}.btn.small{width:auto;padding:9px 12px;margin:3px;font-size:13px}
+.topline{display:flex;justify-content:space-between;gap:10px;align-items:center}.pill{padding:7px 10px;border-radius:999px;background:#0a1727;border:1px solid #2c4665;font-size:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:14px}.stat{background:#07121f;border:1px solid #223b57;border-radius:14px;padding:10px 6px;text-align:center}.stat b{display:block;font-size:17px}.stat span{font-size:10px;color:var(--muted)}
+.progress{height:10px;border-radius:99px;background:#07111d;overflow:hidden;border:1px solid #223951}.bar{height:100%;background:linear-gradient(90deg,#22c55e,#38bdf8);transition:.3s}
+.termTitle{font-size:22px;font-weight:900}.lawNo{color:#7dd3fc;font-weight:800}.definition{line-height:1.7;background:#081421;border:1px solid #263d58;border-radius:16px;padding:15px;margin:12px 0}
+.chunks{display:grid;gap:9px;margin:12px 0}.chunk{background:#19304a;border:1px solid #3b5877;border-radius:14px;padding:13px;cursor:pointer;text-align:left;color:white;font-size:15px;line-height:1.45}.chunk.selected{background:#14532d;border-color:#22c55e}.answerZone{min-height:82px;border:2px dashed #35516f;border-radius:16px;padding:10px;margin:12px 0;background:#07131f}.answerZone .chunk{background:#123d2b;border-color:#2f855a}
+.feedback{padding:13px;border-radius:14px;margin-top:12px;line-height:1.55}.ok{background:#0d4225;border:1px solid #22c55e}.bad{background:#4c1518;border:1px solid #ef4444}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.menu{padding:15px;border-radius:17px;background:#12263d;border:1px solid #2d4866;cursor:pointer}.menu b{display:block;margin-bottom:4px}.rankrow{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;padding:11px;border-bottom:1px solid #213a55}.me{background:#15304a;border-radius:12px}.mastery{display:grid;grid-template-columns:35px 1fr 52px;gap:8px;align-items:center;margin:7px 0}.miniBar{height:7px;background:#07111d;border-radius:99px;overflow:hidden}.miniBar i{display:block;height:100%;background:#22c55e}
+.code{font-family:ui-monospace,Consolas,monospace;letter-spacing:1px}.notice{background:#152c46;border:1px solid #34516f;border-radius:14px;padding:13px;line-height:1.55}.stageBadge{display:inline-block;background:#172f49;border:1px solid #34516f;border-radius:999px;padding:6px 10px;font-size:12px}
+.rankClick{cursor:pointer;padding:10px 12px;border:1px solid #2d4866;border-radius:14px;background:#0b1a2b;display:inline-block}.modal{position:fixed;inset:0;background:#000a;display:grid;place-items:center;padding:16px;z-index:99}.modalCard{width:min(520px,100%);max-height:85vh;overflow:auto;background:#0e1d30;border:1px solid #35516f;border-radius:22px;padding:18px}.rankStep{padding:11px;border-bottom:1px solid #223b57}.adminHero{background:linear-gradient(135deg,#3a2405,#17120a);border:1px solid #a86f13;border-radius:18px;padding:15px;margin:10px 0}.chatFab{position:fixed;right:16px;bottom:18px;width:58px;height:58px;border-radius:50%;border:0;background:#22c55e;font-size:25px;z-index:40;box-shadow:0 8px 30px #0008}.chatPanel{position:fixed;right:12px;bottom:84px;width:min(390px,calc(100vw - 24px));height:min(600px,72vh);z-index:45;background:#0b1727;border:1px solid #35516f;border-radius:22px;padding:13px;display:flex;flex-direction:column;box-shadow:0 18px 60px #000b}.chatMsgs{flex:1;overflow:auto;padding:6px}.chatMsg{padding:9px 10px;margin:7px 0;background:#13263d;border-radius:13px}.chatHead{display:flex;justify-content:space-between;gap:8px}.exitLearn{width:auto;margin:0 0 10px;padding:9px 12px}.weakBox{margin-top:12px;padding:12px;border:1px solid #5a4621;background:#2a210d;border-radius:15px}.rankProgress{height:12px;background:#07111d;border-radius:99px;overflow:hidden;margin:9px 0}.rankProgress i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#eab308);transition:width .8s ease}.leaderHero{background:linear-gradient(135deg,#5b4100,#211800);border:1px solid #eab308;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 0 30px #eab30822}.leaderName{font-size:25px;font-weight:900}.chatRank{font-size:11px;padding:2px 7px;border-radius:99px;background:#243a52}.chatRank.first{background:#6b5000;color:#ffe58a}.tournamentCard{border:1px solid #7c5b12;background:linear-gradient(135deg,#2c2109,#111b29);border-radius:18px;padding:15px;margin-top:12px}.timer{font-size:34px;font-weight:900;letter-spacing:2px}.xpPop{position:fixed;top:20%;left:50%;transform:translateX(-50%);font-size:28px;font-weight:900;z-index:120;animation:xpfloat 1.1s ease forwards}@keyframes xpfloat{to{opacity:0;transform:translate(-50%,-45px)}}
+@media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}h1{font-size:23px}.wrap{padding-left:10px;padding-right:10px}.card{border-radius:20px}}
+</style>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#071b14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Гамшиг 4">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<style id="payment-v2-style">
+#payInfoModal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:99999;display:none;align-items:center;justify-content:center;padding:18px}
+#payInfoModal.open{display:flex}.pay-card{width:min(440px,100%);background:#101722;border-radius:22px;padding:20px;color:#fff}
+.pay-account{font-size:38px;font-weight:900;letter-spacing:2px}.pay-primary,.pay-secondary,.payment-open-btn{width:100%;padding:14px;border:0;border-radius:13px;font-weight:900;margin-top:10px}
+.pay-primary,.payment-open-btn{background:#20c875;color:#06150d}.pay-secondary{background:#29313d;color:#fff}.pay-input{width:100%;box-sizing:border-box;padding:13px;border-radius:12px;background:#0a1018;color:#fff;border:1px solid #39414d}
+</style></head>
+<body><div class="wrap">
+
+<section id="auth">
+ <div class="card hero">
+  <div class="seal">🛡️</div>
+  <h1>ГАМШГААС ХАМГААЛАХ ТУХАЙ</h1>
+  <div class="sub">4-р бүлэг</div>
+  <p class="muted">24 нэр томьёог дарааллаар нь, бүтэн тодорхойлолттой нь цээжлэх сургалт</p>
+ </div>
+ <div class="card" id="loginBox">
+  <h2>Нэвтрэх</h2>
+  <input id="loginUser" class="input" type="email" placeholder="И-мэйл">
+  <input id="loginPass" class="input" type="password" placeholder="Нууц үг">
+  <button class="btn" onclick="login()">НЭВТРЭХ</button>
+  <button class="btn alt" onclick="swapAuth(true)">ШИНЭЭР БҮРТГҮҮЛЭХ</button>
+ </div>
+ <div class="card hidden" id="registerBox">
+  <h2>Бүртгэл үүсгэх</h2>
+  <input id="regName" class="input" placeholder="Таны нэр">
+  <input id="regEmail" class="input" type="email" placeholder="И-мэйл">
+  <input id="regPass" class="input" type="password" placeholder="Нууц үг (4+ тэмдэгт)">
+  <button class="btn" onclick="register()">БҮРТГҮҮЛЭХ</button>
+  <button class="btn alt" onclick="swapAuth(false)">БУЦАХ</button>
+ </div>
+</section>
+
+<section id="activation" class="hidden">
+ <div class="card hero"><div class="seal">🎟️</div><h1>ЭРХ ИДЭВХЖҮҮЛЭХ</h1><p class="muted" id="activationName"></p></div>
+ <div class="card">
+  <div class="notice">Төлбөр баталгаажсаны дараа авсан <b>нэг удаагийн Promo Code</b>-оо оруулна. Нэг код зөвхөн нэг бүртгэлд ашиглагдана.</div>
+  <input id="promoInput" class="input code" placeholder="Ж: GH4-XXXX-XXXX">
+  <button class="btn gold" onclick="activatePromo()">PROMO CODE ИДЭВХЖҮҮЛЭХ</button>
+  <button class="btn alt" onclick="logout()">ӨӨР БҮРТГЭЛЭЭР НЭВТРЭХ</button>
+ </div>
+</section>
+
+<section id="app" class="hidden">
+ <div class="card">
+  <div class="topline"><span class="pill">🟢 Идэвхтэй эрх</span><span class="pill" id="userCount">👥 0 суралцагч</span></div>
+  <h1 id="welcome"></h1>
+  <div id="rankName" class="rankClick" style="margin-top:8px" onclick="showRankModal()"></div><div id="accessStatus" class="notice" style="margin-top:10px"></div><div id="rankProgressHome"></div><div id="leaderHome"></div>
+  <div class="stats">
+   <div class="stat"><b id="xp">0</b><span>НИЙТ XP</span></div>
+   <div class="stat"><b id="position">#1</b><span>ЧАНСАА</span></div>
+   <div class="stat"><b id="learned">0/24</b><span>НЭЭГДСЭН</span></div>
+   <div class="stat"><b id="streak">0🔥</b><span>STREAK</span></div>
+  </div>
+ </div>
+
+ <div id="home" class="card">
+  <h2>🧠 Цээжлэх аялал</h2>
+  <p class="muted">1 → 24 яг хуулийн дарааллаар. Нэг нэр томьёог уншина → өгүүлбэр угсарна → дахин угсарна → дараа нь хүнд шалгалтаар бататгана.</p>
+  <button class="btn" onclick="startLearning()">▶ ҮРГЭЛЖЛҮҮЛЭН ЦЭЭЖЛЭХ</button>
+  <button class="btn gold" onclick="startMaster()">⚡ XP СОРИЛ</button><div id="tournamentHome" class="tournamentCard"><b>🏆 СОРИЛЫН ЭЦСИЙН ТЭМЦЭЭН</b><div class="muted tiny" style="margin-top:5px">Идэвхтэй тэмцээн байгаа эсэхийг шалгаж байна…</div></div>
+<button id="adminBtn" class="btn hidden" onclick="showAdmin()">⚙️ ADMIN</button>
+  <div class="grid2" style="margin-top:10px">
+   <div class="menu" onclick="showLeaderboard()"><b>🏆 Чансаа</b><span class="muted">XP-ээр жагсана</span></div>
+   <div class="menu" onclick="showMastery()"><b>📚 24 нэр томьёо</b><span class="muted">Цээжилсэн хувь</span></div>
+  </div>
+  <div id="weakArea" class="weakBox"></div><button class="btn alt" onclick="logout()">Гарах</button>
+ </div>
+
+ <div id="learn" class="card hidden"><button class="btn alt exitLearn" onclick="backHome()">← НҮҮР РҮҮ ГАРАХ</button>
+  <div class="topline"><span class="stageBadge" id="learnStage"></span><span class="muted" id="learnCounter"></span></div>
+  <div class="progress"><div class="bar" id="learnBar"></div></div>
+  <div id="learnContent"></div>
+ </div>
+
+ <div id="leaderboard" class="card hidden"><h2>🏆 XP чансаа</h2><div id="leaderHero"></div><div id="leaderRows"></div><button class="btn alt" onclick="backHome()">Буцах</button></div>
+ <div id="tournamentPage" class="card hidden"><button class="btn alt exitLearn" onclick="backHome()">← НҮҮР РҮҮ</button><div id="tournamentContent"></div></div><div id="masteryPage" class="card hidden"><h2>📚 Цээжилсэн түвшин</h2><div id="masteryRows"></div><button class="btn alt" onclick="backHome()">Буцах</button></div>
+ <button id="chatFab" class="chatFab" onclick="toggleChat()">💬</button>
+ <div id="chatPanel" class="chatPanel hidden"><div class="topline"><b>💬 Нийтийн чат</b><button class="btn small alt" onclick="toggleChat(false)">✕</button></div><div id="chatMsgs" class="chatMsgs"></div><div class="topline"><input id="chatInput" class="input" maxlength="250" placeholder="Мессеж бичих…"><button class="btn small" onclick="sendChat()">Илгээх</button></div></div>
+</section>
+<div id="rankModal" class="modal hidden" onclick="if(event.target===this)closeRankModal()"><div class="modalCard"><div class="topline"><h2>🏅 Цолны замнал</h2><button class="btn small alt" onclick="closeRankModal()">✕</button></div><div id="rankModalBody"></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://ndkshiodptnjrzexmiig.supabase.co";
+const SUPABASE_KEY="sb_publishable_xxMLsKXGGXo1wuJq9Ep9dQ_s2ocHPRi";
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const DATA=[["Гамшиг","аюулт үзэгдэл, ослын улмаас олон хүний амь нас, эрүүл мэнд хохирох, мал, амьтан олноор хорогдох, эд хөрөнгө, музейн үзмэр, цуглуулга, түүх, соёлын дурсгалт зүйл, хүрээлэн байгаа орчинд улс болон орон нутгийн эдийн засаг, нийгмийн дотоод нөөц, боломжоос давсан хохирол учрахыг;"],["Аюулт үзэгдэл","хүчтэй цасан болон шороон шуурга, ган, зуд, үер, аянга, газар хөдлөлт, нуранги, хөрсний гулгалт үүсэх, гал түймэр, хүн, мал, амьтны гоц халдварт өвчин гарах, цар тахал, хортон шавж, мэрэгч тархах зэргийг;"],["Осол","уул уурхай, үйлдвэрлэл, технологийн горим зөрчигдсөнөөс тоног төхөөрөмж, барилга байгууламж ноцтой эвдрэх, нурах, тээврийн хэрэгсэл осолдох, сүйрэх, цацраг идэвхт болон химийн хорт бодис алдагдах, дэлбэрэлт болох зэргийг;"],["Гамшгийн эрсдэл","гамшгийн улмаас хүн ам, мал, амьтан, эд хөрөнгө, хүрээлэн байгаа орчинд учирч болзошгүй хохирлын магадлалыг;"],["Аюул","хүний амь нас, эрүүл мэнд, мал, амьтан, эд хөрөнгө, музейн үзмэр, цуглуулга, түүх, соёлын дурсгалт зүйл, хүрээлэн байгаа орчинд хохирол учруулж болзошгүй аюулт үзэгдэл, осол, хүний буруутай үйл ажиллагааг;"],["Эмзэг байдал","аюулт үзэгдэл, осолд хүн ам, мал, амьтан, эд хөрөнгө, хүрээлэн байгаа орчин өртөгдөх зэргийг;"],["Гамшгаас хамгаалах үйл ажиллагаа","гамшгаас урьдчилан сэргийлэх, эрэн хайх, аврах, хор уршгийг арилгах, хүмүүнлэгийн тусламж үзүүлэх, хойшлуулшгүй сэргээн босгох арга хэмжээг хэрэгжүүлэхийг;"],["Гамшгийн эрсдэлийг бууруулах үйл ажиллагаа","гамшгийн эрсдэлийг үнэлэх, болзошгүй хохирлын хэмжээг багасгах, гамшгийг хохирол багатай даван туулах чадавхыг бэхжүүлэхэд чиглэсэн цогц арга хэмжээг;"],["Гамшгийн зарлан мэдээлэл","олон нийтэд хүргэх дохио, сэрэмжлүүлэх мэдээллийг;"],["Эрэн хайх, аврах ажиллагаа","голомтын бүсэд хүн ам, мал, амьтан, эд хөрөнгө, музейн үзмэр, цуглуулга, түүх, соёлын дурсгалт зүйлийг эрэн хайх, аврах, нэрвэгдэгсдэд анхны тусламж үзүүлэх арга хэмжээг;"],["Голомтын бүс","гамшиг, аюул, аюулт үзэгдэл, ослын улмаас хорио цээр, хязгаарлалтын дэглэм тогтоон, эсхүл шууд эрэн хайх, аврах, нүүлгэн шилжүүлэх, хор уршгийг арилгах ажиллагаа явуулж байгаа объект, нутаг дэвсгэрийг;"],["Нэрвэгдэгсэд","гамшиг, аюулын улмаас амь нас, эрүүл мэнд, эд хөрөнгөөр хохирсон иргэдийг;"],["Гамшгийн үед хүч хэрэгсэл дайчлан гаргах","эрэн хайх, аврах, хор уршгийг арилгах, хүмүүнлэгийн тусламж үзүүлэх, хойшлуулшгүй сэргээн босгох ажиллагааг хэрэгжүүлэх зорилгоор нэмэлт хүч хэрэгслийг татан оролцуулах, шаардлагатай барилга байгууламж, газрыг ашиглахыг;"],["Гамшгийн хор уршиг","гамшиг, аюулын улмаас хүний амь нас, эрүүл мэнд хохирсон, мал, амьтан хорогдсон, эд хөрөнгө үрэгдсэн, дэд бүтэц эвдэрсэн, хүрээлэн байгаа орчинд нөлөөлсөн зэрэг сөрөг үр дагаврыг;"],["Гамшгийн хор уршгийг арилгах","энэ хуулийн 4.1.14-т заасан үр дагаврыг зогсоох, бууруулах, хохирол багатай давахад чиглэсэн хойшлуулшгүй арга хэмжээг;"],["Хойшлуулшгүй сэргээн босгох","гамшиг, аюулын улмаас үүссэн нөхцөлийг хэвийн байдалд оруулахад чиглэсэн шинээр босгох, сэргээн засварлах арга хэмжээг;"],["Мэргэжлийн анги","сум, дүүрэг, хуулийн этгээдийн дэргэд байгуулагдсан, аврах ажлын техник, тоног төхөөрөмж, багаж хэрэгслээр хангагдсан, гамшгаас хамгаалах үйл ажиллагааг гүйцэтгэхэд сургаж бэлтгэгдсэн орон тооны бус томилгоот нэгжийг;"],["Сайн дурын хэсэг","сайн дурын үндсэн дээр гамшгаас хамгаалах үйл ажиллагаанд оролцохоор зохих сургалтад хамрагдсан иргэдийг;"],["Гамшгийн онцгой нөхцөл байдал","аюулт үзэгдэл, ослоос үүдэн хүний амь нас, эрүүл мэнд, мал, амьтан, хүрээлэн байгаа орчин, дэд бүтцэд ноцтой хохирол учруулж, хүн-нийгэм-эдийн засгийн аюулгүй, тогтвортой байдал, хэвийн үйл ажиллагаа алдагдахыг;"],["Гамшгаас урьдчилан сэргийлэх","аюулт үзэгдэл, ослын хор уршиг, хохирол, сөрөг үр дагавраас зайлсхийх, таслан зогсоох, бууруулах зорилгоор авч хэрэгжүүлж байгаа цогц арга хэмжээг;"],["Хүмүүнлэгийн тусламж","иргэн, байгууллага, хуулийн этгээдээс гамшгаас хамгаалах үйл ажиллагаанд зориулж сайн дурын үндсэн дээр өгч байгаа мөнгөн хөрөнгө, техник хэрэгсэл, бараа материал, ажил, үйлчилгээг;"],["Хорио цээрийн дэглэм","цацраг хими, биологийн осол болон хүн, мал, амьтны гоц халдварт өвчин, цар тахлаас урьдчилан сэргийлэх, хор уршгийг арилгах, таслан зогсоох зорилгоор халдварласан, халдвар тээгч, халдварласан байж болзошгүй сэжиг бүхий болон тэдгээрийн харьцагч, хавьтагч хүн, мал, амьтан, эд материалыг тусгай нөхцөлд тогтоосон хугацаагаар бусдаас тусгаарлах, эмчлэх, сувилах, хяналт-ажиглалтад байлгах, ариутгахыг;"],["Хязгаарлалтын дэглэм","засаг захиргаа, нутаг дэвсгэр, голомтын бүсэд гамшгаас хамгаалах үйл ажиллагааг хэрэгжүүлэх зорилгоор хүн, мал, амьтан, тээврийн хэрэгслийн шилжилт хөдөлгөөнийг зогсоох, иргэн, байгууллага, хуулийн этгээдийн үйл ажиллагаа болон эрхийг хязгаарлахыг;"],["Бэлэн байдал","гамшиг, аюулын сөрөг үр дагаврыг урьдчилан тооцож, хүний амь нас, эрүүл мэнд, мал, амьтан, хүрээлэн буй орчин, дэд бүтэц, нийгэм-эдийн засгийн аюулгүй, тогтвортой байдлыг хангах зорилгоор авч хэрэгжүүлж байгаа нэгдмэл удирдлага, төлөвлөлт, зохион байгуулалтын цогц арга хэмжээг."]];
+
+const RANKS=[
+[0,"🌱 Шинэ суралцагч"],[500,"📖 Мэдлэгийн эрэлчин"],[1500,"🛡️ Бэлэн байдлын сахиул"],[3500,"🦅 Гамшгийн сөрөгч"],[7000,"👑 Эрдмийн дархан"]
+];
+let me=null, mode="read", activeIndex=0, chunks=[], picked=[], challengeQueue=[], challengePos=0;
+
+
+function swapAuth(reg){loginBox.classList.toggle("hidden",reg);registerBox.classList.toggle("hidden",!reg)}
+async function register(){
+ const name=regName.value.trim(), email=regEmail.value.trim().toLowerCase(), password=regPass.value;
+ if(!name||!email||password.length<6)return alert("Нэр, и-мэйл, 6+ тэмдэгттэй нууц үг оруулна уу.");
+ const username=(email.split("@")[0].replace(/[^a-zA-Z0-9_]/g,"")||"user")+"_"+Math.floor(1000+Math.random()*9000);
+ const {error}=await sb.auth.signUp({email,password,options:{data:{display_name:name,username}}});
+ if(error)return alert("Бүртгэл амжилтгүй: "+error.message);
+ setTimeout(loadSession,400);
+}
+async function login(){
+ const email=loginUser.value.trim().toLowerCase(),password=loginPass.value;
+ const {error}=await sb.auth.signInWithPassword({email,password});
+ if(error)return alert("Нэвтрэхэд алдаа: "+error.message);
+ await loadSession();
+}
+async function logout(){await sb.auth.signOut();location.reload()}
+async function loadSession(){
+ const {data:{session}}=await sb.auth.getSession();
+ if(!session){auth.classList.remove("hidden");activation.classList.add("hidden");app.classList.add("hidden");return}
+ const uid=session.user.id;
+ const {data:p,error}=await sb.from("profiles").select("*").eq("id",uid).single();
+ if(error){console.log(error);return setTimeout(loadSession,700)}
+ const {data:prog}=await sb.from("user_progress").select("*").eq("user_id",uid).order("term_no");
+ me={id:uid,name:p.display_name,username:p.username,active:p.is_active,access_expires_at:p.access_expires_at,xp:p.xp,unlocked:p.unlocked,streak:p.streak,
+ mastery:Array.from({length:24},(_,i)=>(prog||[]).find(x=>x.term_no===i+1)?.mastery||0)};
+ openByState();
+}
+async function persist(){
+ if(!me)return;
+
+ const {data:state,error:stateError}=await sb.rpc("save_game_state",{
+   p_xp:Math.max(0,Math.floor(me.xp||0)),
+   p_streak:Math.max(0,Math.floor(me.streak||0)),
+   p_unlocked:Math.min(24,Math.max(1,Math.floor(me.unlocked||1)))
+ });
+
+ if(stateError){
+   console.error("save_game_state error:",stateError);
+   alert("XP хадгалахад алдаа гарлаа: "+stateError.message);
+   return;
+ }
+
+ for(let i=0;i<24;i++){
+   await sb.from("user_progress").update({
+     mastery:Math.min(100,Math.max(0,Math.floor(me.mastery[i]||0))),
+     updated_at:new Date().toISOString()
+   }).eq("user_id",me.id).eq("term_no",i+1);
+ }
+
+ await refreshStats();
+}
+function openByState(){
+ auth.classList.add("hidden");
+ if(!me.active){activation.classList.remove("hidden");app.classList.add("hidden");activationName.textContent=`${me.name} · Таны тоглох эрх одоогоор идэвхгүй байна.`}
+ else{activation.classList.add("hidden");app.classList.remove("hidden");backHome();refreshStats();checkAdmin()}
+}
+async function activatePromo(){
+ const code=promoInput.value.trim(); if(!code)return alert("Promo Code оруулна уу.");
+ const {data,error}=await sb.rpc("activate_promo",{p_code:code});
+ if(error)return alert("Алдаа: "+error.message);
+ alert(data.message); if(data.success)await loadSession();
+}
+
+async function checkAdmin(){
+  if(!me){adminBtn?.classList.add("hidden");return false}
+  const {data,error}=await sb.rpc("is_current_user_admin");
+  const ok=!error && data===true;
+  if(adminBtn) adminBtn.classList.toggle("hidden",!ok);
+  return ok;
+}
+
+async function showAdmin(){
+  const ok=await checkAdmin();
+  if(!ok)return alert("Admin эрх байхгүй байна.");
+  hidePages();adminPage.classList.remove("hidden");
+  await loadAdminPromos();
+}
+
+async function adminCreatePromo(){
+  const ok=await checkAdmin();
+  if(!ok)return alert("Admin эрх байхгүй байна.");
+  const code=adminPromoInput.value.trim();
+  if(!code)return;
+  adminPromoMsg.textContent="Үүсгэж байна…";
+  const {data,error}=await sb.rpc("admin_create_promo",{p_code:code});
+  if(error){adminPromoMsg.textContent="Алдаа: "+error.message;return}
+  adminPromoMsg.textContent=data?.message||"Боллоо.";
+  if(data?.success){adminPromoInput.value="";await loadAdminPromos()}
+}
+
+async function loadAdminPromos(){
+  const ok=await checkAdmin();
+  if(!ok)return;
+  adminPromoList.innerHTML='<p class="muted">Ачаалж байна…</p>';
+  const {data,error}=await sb.rpc("admin_list_promos");
+  if(error){adminPromoList.innerHTML='<p class="muted">Алдаа: '+error.message+'</p>';return}
+  if(!data?.length){adminPromoList.innerHTML='<p class="muted">Promo code алга.</p>';return}
+  adminPromoList.innerHTML=data.map(x=>`<div class="rankrow">
+    <div>
+      <b>${x.code}</b>
+      <div class="tiny">${x.is_used ? "АШИГЛАСАН" : "АШИГЛААГҮЙ"}</div>
+    </div>
+    <div style="text-align:right">
+      <b>${x.is_used ? "✅" : "🟢"}</b>
+      <div class="tiny">${x.used_email ? x.used_email : ""}</div>
+    </div>
+  </div>`).join("");
+}
+
+function rankFor(x){let r=RANKS[0][1];for(const [need,name] of RANKS)if(x>=need)r=name;return r}
+function rankIndexFor(x){let n=0;RANKS.forEach((r,i)=>{if(x>=r[0])n=i});return n}
+function showRankModal(){
+ const ri=rankIndexFor(me.xp), next=RANKS[ri+1];
+ let info=next?`<div class="notice">Одоогийн XP: <b>${me.xp}</b><br>Дараагийн цол: <b>${next[1]}</b><br>Үлдсэн: <b>${Math.max(0,next[0]-me.xp)} XP</b></div>`:`<div class="notice">👑 Та хамгийн дээд цолд хүрсэн байна. · ${me.xp} XP</div>`;
+ rankModalBody.innerHTML=info+RANKS.map((r,i)=>`<div class="rankStep ${i===ri?'me':''}"><b>${r[1]}</b><div class="tiny">${r[0].toLocaleString()} XP-с</div></div>`).join('');rankModal.classList.remove('hidden')
+}
+function closeRankModal(){rankModal.classList.add('hidden')}
+function xpBase(kind){let ri=rankIndexFor(me.xp), base=[90,65,48,34,24][ri]; if(kind==='easy')base*=.75;if(kind==='hard')base*=1.08;if(kind==='challenge')base*=.14;return Math.max(4,Math.round(base*(.88+Math.random()*.24)))}
+function showXp(n){let d=document.createElement('div');d.className='xpPop';d.textContent=(n>=0?'+':'')+n+' XP';document.body.appendChild(d);setTimeout(()=>d.remove(),1100)}
+function renderWeak(){if(!me)return;let a=me.mastery.map((m,i)=>({m,i})).sort((a,b)=>a.m-b.m).slice(0,3);weakArea.innerHTML=`<b>🧠 Миний сул хэсэг</b><div class="tiny" style="margin-top:5px">${a.map(x=>`№${x.i+1} ${DATA[x.i][0]} — ${x.m}%`).join('<br>')}</div>`}
+
+async function refreshStats(){
+ if(!me||!me.active)return;
+
+ const {data:freshProfile}=await sb.from("profiles")
+   .select("xp,streak,unlocked,display_name,username,is_active,access_expires_at")
+   .eq("id",me.id)
+   .single();
+
+ if(freshProfile){
+   me.xp=freshProfile.xp;
+   me.streak=freshProfile.streak;
+   me.unlocked=freshProfile.unlocked;
+   me.name=freshProfile.display_name;
+   me.username=freshProfile.username;me.active=freshProfile.is_active;me.access_expires_at=freshProfile.access_expires_at;
+ }
+
+ welcome.textContent=`Сайн байна уу, ${me.name}!`;renderAccessStatus();
+ rankName.innerHTML=`<span class="tiny">ТАНЫ ЦОЛ</span><br><b style="font-size:19px">${rankFor(me.xp)}</b>`;
+ const ri=rankIndexFor(me.xp), cur=RANKS[ri], next=RANKS[ri+1];
+ const pct=next?Math.max(0,Math.min(100,Math.round((me.xp-cur[0])/(next[0]-cur[0])*100))):100;
+ rankProgressHome.innerHTML=`<div class="topline tiny"><span>${me.xp.toLocaleString()} XP</span><span>${next?next[1]:'Дээд цол'} · ${pct}%</span></div><div class="rankProgress"><i style="width:${pct}%"></i></div>${next?`<div class="tiny">Дараагийн цол хүртэл <b>${(next[0]-me.xp).toLocaleString()} XP</b> үлдлээ</div>`:'<div class="tiny">👑 Хамгийн дээд цолд хүрсэн</div>'}`;
+ xp.textContent=me.xp;
+ learned.textContent=`${Math.min(me.unlocked,24)}/24`;
+ streak.textContent=me.streak+"🔥";
+
+ const {data:board}=await sb.rpc("get_leaderboard");
+ const mine=(board||[]).find(x=>x.player_username===me.username);
+ document.getElementById("position").textContent="#"+(mine?.rank_number||"-");
+ const top=(board||[])[0];
+ leaderHome.innerHTML=top&&top.player_username===me.username?`<div class="leaderHero"><div class="tiny">🏆 ЧАНСААГ ТЭРГҮҮЛЭГЧ</div><div class="leaderName">👑 ${escapeHtml(me.name)}</div><b>${rankFor(me.xp)} · ${me.xp.toLocaleString()} XP</b></div>`:'';
+ await refreshTournamentHome();
+
+ const {data:count}=await sb.rpc("get_player_count");
+ userCount.textContent=`👥 ${count||0} суралцагч`;
+ renderWeak();
+}
+function hidePages(){[home,learn,leaderboard,masteryPage,adminPage,tournamentPage].forEach(x=>x.classList.add("hidden"))}
+function backHome(){hidePages();home.classList.remove("hidden");refreshStats()}
+function splitDefinition(text, hard=false){
+ let words=text.trim().split(/\s+/);
+ let target=hard?5:3; // 2-р үе 3 том хэсэг, 3-р үе 5 хэсэг
+ let size=Math.ceil(words.length/target),out=[];
+ for(let i=0;i<words.length;i+=size)out.push(words.slice(i,i+size).join(" "));
+ return out;
+}
+function shuffled(a){let x=[...a];for(let i=x.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function startLearning(){activeIndex=Math.max(0,Math.min(23,me.unlocked-1));mode="read";hidePages();learn.classList.remove("hidden");renderLearn()}
+function renderLearn(){
+ let item=DATA[activeIndex],pct=Math.round((activeIndex)/24*100);learnBar.style.width=pct+"%";learnCounter.textContent=`${activeIndex+1} / 24`;
+ learnStage.textContent=mode==="read"?"① УНШ":mode==="arrange1"?"② УГСАР":mode==="arrange2"?"③ ДАХИН УГСАР":"④ БАТАТГА";
+ if(mode==="read"){
+  learnContent.innerHTML=`<div class="lawNo">4.1.${activeIndex+1}</div><div class="termTitle">${item[0]}</div>
+  <div class="definition">${item[1]}</div><div class="notice">👀 Эхлээд бүтэн өгүүлбэрийн дарааллыг анзаараарай. Дараагийн алхамд энэ өгүүлбэр холигдоно.</div>
+  <button class="btn" onclick="prepareArrange(false)">ЦЭЭЖИЛСЭН — УГСАРЧ ҮЗЬЕ</button>`;
+ }else renderArrange();
+}
+function prepareArrange(hard){
+ mode=hard?"arrange2":"arrange1";chunks=splitDefinition(DATA[activeIndex][1],hard);picked=[];renderLearn()
+}
+function renderArrange(){
+ let remain=chunks.map((t,i)=>({t,i})).filter(x=>!picked.includes(x.i));
+ if(!window._orderKey||window._orderMode!==mode||window._orderIndex!==activeIndex){
+   window._orderKey=shuffled(remain.map(x=>x.i));window._orderMode=mode;window._orderIndex=activeIndex;
+ }
+ let order=window._orderKey.filter(i=>!picked.includes(i));
+ learnContent.innerHTML=`<div class="lawNo">4.1.${activeIndex+1}</div><div class="termTitle">${DATA[activeIndex][0]}</div>
+ <p class="muted">Хэсгүүдийг <b>эхнээс нь зөв дарааллаар</b> товш. Сонгосон хэсэг доорх ногоон талбарт орно.</p>
+ <div class="answerZone">${picked.length?picked.map(i=>`<button class="chunk" onclick="undoPick(${i})">${chunks[i]}</button>`).join(""):'<span class="muted">Энд зөв дарааллаа угсарна…</span>'}</div>
+ <div class="chunks">${order.map(i=>`<button class="chunk" onclick="pickChunk(${i})">${chunks[i]}</button>`).join("")}</div>
+ <button class="btn" onclick="checkArrange()">ШАЛГАХ</button>
+ <button class="btn alt" onclick="resetArrange()">ДАХИН ХОЛИХ</button>`;
+}
+function pickChunk(i){picked.push(i);renderArrange()}
+function undoPick(i){let k=picked.lastIndexOf(i);if(k>=0)picked.splice(k,1);renderArrange()}
+function resetArrange(){picked=[];window._orderKey=null;renderArrange()}
+function normalize(s){return s.toLowerCase().replace(/[.,!?;:–—"'“”]/g,"").replace(/\s+/g," ").trim()}
+function checkArrange(){
+ if(picked.length!==chunks.length)return alert("Бүх хэсгийг дараалалд оруулна уу.");
+ let made=picked.map(i=>chunks[i]).join(" "),target=chunks.join(" ");
+ if(normalize(made)===normalize(target)){
+   let gain=xpBase(mode==="arrange2"?"hard":"easy");me.xp+=gain;showXp(gain);me.streak++;me.mastery[activeIndex]=Math.min(100,me.mastery[activeIndex]+(mode==="arrange2"?20:15));persist();
+   if(mode==="arrange1"){learnContent.innerHTML+=`<div class="feedback ok">✅ Зөв дараалал! +${gain} XP<br>Одоо хэсгүүдийг жижигрүүлээд дахин угсарна.</div>`;setTimeout(()=>{window._orderKey=null;prepareArrange(true)},900)}
+   else{learnContent.innerHTML+=`<div class="feedback ok">🔥 Маш сайн! +${gain} XP</div>`;setTimeout(finishTerm,900)}
+ }else{
+   let loss=mode==="arrange2"?10:5;me.xp=Math.max(0,me.xp-loss);showXp(-loss);me.streak=0;me.mastery[activeIndex]=Math.max(0,me.mastery[activeIndex]-5);persist();
+   learnContent.innerHTML+=`<div class="feedback bad">❌ Дараалал зөрлөө. Оноо хасагдлаа. Зөв эхийг нэг удаа дахин хараад ахин угсарна.</div>
+   <div class="definition">${DATA[activeIndex][1]}</div><button class="btn" onclick="resetArrange()">ДАХИН ОРОЛДОХ</button>`;
+ }
+}
+function finishTerm(){
+ me.mastery[activeIndex]=Math.max(me.mastery[activeIndex],45);
+ if(activeIndex===me.unlocked-1 && me.unlocked<24)me.unlocked++;
+ persist();
+ if(activeIndex<23){activeIndex++;mode="read";window._orderKey=null;renderLearn()}
+ else{alert("🎉 1–24 бүх нэр томьёог нээлээ! Одоо XP СОРИЛ-оор улам сайн цээжилнэ.");backHome()}
+}
+function startMaster(){
+ let max=Math.max(1,Math.min(24,me.unlocked));let pool=[...Array(max).keys()].sort((a,b)=>(me.mastery[a]||0)-(me.mastery[b]||0));let weak=pool.slice(0,Math.max(3,Math.ceil(max*.6)));challengeQueue=shuffled(weak).slice(0,Math.min(10,weak.length));challengePos=0;hidePages();learn.classList.remove("hidden");renderChallenge()
+}
+function renderChallenge(){
+ if(challengePos>=challengeQueue.length){persist();alert("🏆 Таны түвшинд тохирсон XP сорил дууслаа!");return backHome()}
+ let idx=challengeQueue[challengePos],item=DATA[idx],hard=splitDefinition(item[1],true);chunks=hard;picked=[];activeIndex=idx;mode="challenge";window._orderKey=shuffled([...Array(chunks.length).keys()]);
+ learnStage.textContent="⚡ XP СОРИЛ";learnCounter.textContent=`${challengePos+1}/${challengeQueue.length}`;learnBar.style.width=(challengePos/challengeQueue.length*100)+"%";
+ renderChallengeArrange();
+}
+function renderChallengeArrange(){
+ let order=window._orderKey.filter(i=>!picked.includes(i));
+ learnContent.innerHTML=`<div class="lawNo">4.1.${activeIndex+1}</div><div class="termTitle">${DATA[activeIndex][0]}</div>
+ <p class="muted">Эхийг харуулахгүй. Бүтэн тодорхойлолтыг зөв дарааллаар угсар.</p>
+ <div class="answerZone">${picked.length?picked.map(i=>`<button class="chunk" onclick="challengeUndo(${i})">${chunks[i]}</button>`).join(""):'<span class="muted">Цээжээрээ дарааллыг эхлүүл…</span>'}</div>
+ <div class="chunks">${order.map(i=>`<button class="chunk" onclick="challengePick(${i})">${chunks[i]}</button>`).join("")}</div>
+ <button class="btn gold" onclick="checkChallenge()">ХАРИУЛТАА ШАЛГАХ</button>`;
+}
+function challengePick(i){picked.push(i);renderChallengeArrange()}
+function challengeUndo(i){let k=picked.lastIndexOf(i);if(k>=0)picked.splice(k,1);renderChallengeArrange()}
+function checkChallenge(){
+ if(picked.length!==chunks.length)return alert("Бүх хэсгийг оруулна уу.");
+ let correct=picked.every((v,i)=>v===i);
+ if(correct){let g=xpBase("challenge");me.xp+=g;showXp(g);me.streak++;me.mastery[activeIndex]=Math.min(100,me.mastery[activeIndex]+8);persist();learnContent.innerHTML+=`<div class="feedback ok">🔥 ЗӨВ! +${g} XP · Streak ${me.streak}</div>`}
+ else{me.xp=Math.max(0,me.xp-5);showXp(-5);me.streak=0;me.mastery[activeIndex]=Math.max(0,me.mastery[activeIndex]-5);persist();learnContent.innerHTML+=`<div class="feedback bad">❌ БУРУУ · −5 XP<br><b>Зөв эх:</b><br>${DATA[activeIndex][1]}</div>`}
+ challengePos++;setTimeout(renderChallenge,1200)
+}
+
+async function showLeaderboard(){
+ hidePages();leaderboard.classList.remove("hidden");leaderRows.innerHTML='<p class="muted">Чансаа ачаалж байна…</p>';
+ const {data:arr,error}=await sb.rpc("get_leaderboard");
+ if(error){leaderRows.innerHTML='<p class="muted">Чансаа ачаалж чадсангүй.</p>';return}
+ let clean=(arr||[]); const top=clean[0];
+ leaderHero.innerHTML=top?`<div class="leaderHero"><div class="tiny">🏆 ОДООГИЙН ТЭРГҮҮЛЭГЧ</div><div class="leaderName">👑 ${escapeHtml(top.player_display_name)}</div><b>${rankFor(top.player_xp)} · ${top.player_xp.toLocaleString()} XP</b></div>`:'';
+ leaderRows.innerHTML=clean.map((x,i)=>`<div class="rankrow ${x.player_username===me.username?'me':''}">
+ <b>${i<3?["🥇","🥈","🥉"][i]:"#"+x.rank_number}</b><div><b>${escapeHtml(x.player_display_name)}</b>
+ <div class="tiny">${rankFor(x.player_xp)}</div></div><b>${x.player_xp.toLocaleString()} XP</b></div>`).join("");
+}
+function showMastery(){
+ hidePages();masteryPage.classList.remove("hidden");
+ masteryRows.innerHTML=DATA.map((x,i)=>`<div class="mastery"><b>${i+1}</b><div><div class="tiny">${x[0]}</div><div class="miniBar"><i style="width:${me.mastery[i]||0}%"></i></div></div><b>${me.mastery[i]||0}%</b></div>`).join("")
+}
+let chatChannel=null;
+function toggleChat(force){let open=typeof force==='boolean'?force:chatPanel.classList.contains('hidden');chatPanel.classList.toggle('hidden',!open);if(open)loadChat()}
+async function loadChat(){const {data:lb}=await sb.rpc('get_leaderboard');window._rankMap=new Map((lb||[]).map(x=>[x.player_display_name,x.rank_number]));const {data,error}=await sb.from('chat_messages').select('id,user_id,display_name,message,created_at').order('created_at',{ascending:false}).limit(60);if(error){chatMsgs.innerHTML='<p class="muted">Chat SQL суулгасны дараа чат ажиллана.</p>';return}chatMsgs.innerHTML=(data||[]).reverse().map(chatHtml).join('');chatMsgs.scrollTop=chatMsgs.scrollHeight;if(!chatChannel){chatChannel=sb.channel('public-chat').on('postgres_changes',{event:'INSERT',schema:'public',table:'chat_messages'},p=>{chatMsgs.insertAdjacentHTML('beforeend',chatHtml(p.new));chatMsgs.scrollTop=chatMsgs.scrollHeight}).subscribe()}}
+function chatHtml(x){let r=window._rankMap?.get(x.display_name);return `<div class="chatMsg"><div class="chatHead"><b>${r===1?'👑 ':''}${escapeHtml(x.display_name||'Сурагч')} ${r?`<span class="chatRank ${r===1?'first':''}">#${r}</span>`:''}</b><span class="tiny">${new Date(x.created_at).toLocaleTimeString('mn-MN',{hour:'2-digit',minute:'2-digit'})}</span></div><div>${escapeHtml(x.message)}</div></div>`}
+function escapeHtml(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+async function sendChat(){let message=chatInput.value.trim();if(!message||!me)return;if(message.length>250)return alert('250 тэмдэгтээс урт байж болохгүй.');chatInput.value='';const {error}=await sb.from('chat_messages').insert({user_id:me.id,display_name:me.name,message});if(error)alert('Чат илгээж чадсангүй: '+error.message)}
+
+let tournamentTimer=null,tournamentState=null,tournamentCorrect=0,tournamentWrong=0,tournamentStartedAt=0,tournamentQuestion=null,tournamentQuestions=[],tournamentPos=0;
+const FINAL_OPEN=new Date('2026-09-13T17:30:00+08:00').getTime(),FINAL_CLOSE=new Date('2026-09-13T17:30:00+08:00').getTime(),FINAL_RESULTS=new Date('2026-09-13T17:40:00+08:00').getTime();
+function finalPhase(){let n=Date.now();return n<FINAL_OPEN?'before':n<FINAL_CLOSE?'open':n<FINAL_RESULTS?'waiting':'results'}
+function finalCountdown(ms){ms=Math.max(0,ms);let d=Math.floor(ms/86400000),h=Math.floor(ms/3600000)%24,m=Math.floor(ms/60000)%60,sec=Math.floor(ms/1000)%60;return `${d?d+' өдөр ':''}${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`}
+async function refreshTournamentHome(){if(!me?.active)return;let ph=finalPhase(),html=`<b>🏆 ЭЦСИЙН ТЭМЦЭЭН</b><div class="tiny" style="margin:6px 0">📅 2026.09.13 · 17:30–17:30</div>`;if(ph==='before')html+=`<div class="muted">🔒 Эхлэхэд <b>${finalCountdown(FINAL_OPEN-Date.now())}</b></div>`;if(ph==='open')html+=`<div style="color:#86efac;font-weight:900">🟢 ТЭМЦЭЭН ЭХЭЛЛЭЭ</div><button class="btn" onclick="openTournamentWarning()">🏆 ТЭМЦЭЭНД ОРОХ</button><div class="tiny">17:30 хүртэл нэг удаа оролцоно.</div>`;if(ph==='waiting')html+=`<div class="muted">⏳ Тэмцээн хаагдлаа. Эцсийн дүн <b>17:40</b>-д гарна.</div>`;if(ph==='results')html+=`<button class="btn gold" onclick="showFinalResults()">🏆 ЭЦСИЙН ДҮН ХАРАХ</button>`;tournamentHome.innerHTML=html}
+function openTournamentWarning(){if(finalPhase()!=='open')return refreshTournamentHome();tournamentContent.innerHTML=`<div class="notice"><h2>⚠️ АНХААРУУЛГА</h2><p>Тэмцээн <b>10 асуулттай</b>. Та зөвхөн <b>1 удаа</b> оролцоно.</p><p><b>ЭХЛЭХ</b> дармагц таны хугацаа шууд хэмжигдэж эхэлнэ. 10 асуултаа дуусгавал таны тэмцээн дуусна.</p><p>Эхлээд зөв хариултын тоо, тэнцвэл хамгийн бага хугацаагаар байр эзэлнэ.</p></div><button class="btn gold" onclick="beginFinalTournament()">ЭХЛЭХ</button><button class="btn alt" onclick="backHome()">БУЦАХ</button>`;hidePages();tournamentPage.classList.remove('hidden')}
+async function beginFinalTournament(){if(finalPhase()!=='open')return alert('Оролцох хугацаа дууссан байна.');const {data:qs,error:qerr}=await sb.rpc('get_final_questions');if(qerr||!qs||qs.length!==10)return alert('10 асуулт бүрэн оруулаагүй байна. Admin асуултаа шалгана уу.');const {data:join,error}=await sb.rpc('join_final_tournament');if(error)return alert(error.message);if(join?.already_finished)return alert('Та энэ тэмцээнд аль хэдийн оролцсон байна.');tournamentQuestions=qs;tournamentPos=join?.answered_count||0;tournamentCorrect=join?.correct_count||0;tournamentWrong=join?.wrong_count||0;tournamentStartedAt=Date.now()-(join?.elapsed_ms||0);nextFinalQuestion();runFinalClock()}
+function runFinalClock(){clearInterval(tournamentTimer);const tick=()=>{let el=document.getElementById('tourTimer');if(el)el.textContent=fmtElapsed(Date.now()-tournamentStartedAt);if(Date.now()>=FINAL_CLOSE){clearInterval(tournamentTimer);forceFinalFinish()}};tick();tournamentTimer=setInterval(tick,100)}
+function fmtElapsed(ms){ms=Math.max(0,ms);let m=Math.floor(ms/60000),s=Math.floor(ms/1000)%60,cs=Math.floor(ms/10)%100;return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(cs).padStart(2,'0')}`}
+function nextFinalQuestion(){if(tournamentPos>=10)return finishFinalTournament();let q=tournamentQuestions[tournamentPos];tournamentQuestion=q;tournamentContent.innerHTML=`<div class="tiny">🏆 ЭЦСИЙН ТЭМЦЭЭН · ${tournamentPos+1}/10</div><div id="tourTimer" class="timer">00:00.00</div><div class="topline"><b>✅ ${tournamentCorrect}</b><span>❌ ${tournamentWrong}</span></div><div class="definition" style="margin-top:12px"><b>${escapeHtml(q.question)}</b></div>${[q.option_a,q.option_b,q.option_c,q.option_d].map((o,i)=>`<button class="btn alt" onclick="answerFinalTournament('${['A','B','C','D'][i]}')">${escapeHtml(o)}</button>`).join('')}`}
+async function answerFinalTournament(letter){if(Date.now()>=FINAL_CLOSE)return forceFinalFinish();let elapsed=Date.now()-tournamentStartedAt;const {data,error}=await sb.rpc('submit_final_answer',{p_question_no:tournamentQuestion.question_no,p_answer:letter,p_elapsed_ms:elapsed});if(error)return alert(error.message);if(data?.correct)tournamentCorrect++;else tournamentWrong++;tournamentPos++;nextFinalQuestion()}
+async function finishFinalTournament(){clearInterval(tournamentTimer);let elapsed=Date.now()-tournamentStartedAt;await sb.rpc('finish_final_tournament',{p_elapsed_ms:elapsed});tournamentContent.innerHTML=`<div class="notice"><h2>✅ Таны тэмцээн дууслаа</h2><p><b>${tournamentCorrect}/10</b> зөв</p><p>⏱ ${fmtElapsed(elapsed)}</p><p>🏆 Эцсийн байр <b>17:40</b>-д тодорно.</p></div><button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
+async function forceFinalFinish(){clearInterval(tournamentTimer);await sb.rpc('finish_final_tournament',{p_elapsed_ms:Math.min(Date.now()-tournamentStartedAt,FINAL_CLOSE-tournamentStartedAt)});tournamentContent.innerHTML=`<div class="notice"><h2>⏰ 17:30 боллоо</h2><p>Тэмцээн автоматаар хаагдлаа.</p><p>Эцсийн дүн 17:40-д гарна.</p></div><button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
+async function showFinalResults(){if(finalPhase()!=='results')return alert('Эцсийн дүн 17:40-д гарна.');hidePages();tournamentPage.classList.remove('hidden');const {data:rows,error}=await sb.rpc('get_final_results');if(error)return tournamentContent.innerHTML='<p>Дүн ачаалж чадсангүй.</p>';let winner=rows?.[0];tournamentContent.innerHTML=`${winner?`<div class="leaderHero"><div class="tiny">👑 ЭЦСИЙН ТЭМЦЭЭНИЙ ЯЛАГЧ</div><div class="leaderName">🏆 ${escapeHtml(winner.player_display_name)}</div><b>${winner.correct_count}/10 · ${fmtElapsed(winner.elapsed_ms)}</b></div>`:''}<h2>🏆 ЭЦСИЙН ДҮН</h2>${(rows||[]).map((x,i)=>`<div class="rankrow"><b>${i<3?['🥇','🥈','🥉'][i]:'#'+(i+1)}</b><div><b>${escapeHtml(x.player_display_name)}</b><div class="tiny">${x.correct_count}/10 зөв</div></div><b>${fmtElapsed(x.elapsed_ms)}</b></div>`).join('')}<button class="btn" onclick="backHome()">НҮҮР РҮҮ</button>`}
+async function adminLoadFinalQuestions(){const ok=await checkAdmin();if(!ok)return;const {data}=await sb.rpc('admin_get_final_questions');let map=new Map((data||[]).map(q=>[q.question_no,q]));adminQuestionEditor.innerHTML=Array.from({length:10},(_,i)=>{let n=i+1,q=map.get(n)||{};return `<div class="notice" style="margin:10px 0"><b>Асуулт ${n}</b><textarea class="input" id="fq${n}" placeholder="Асуулт">${escapeHtml(q.question||'')}</textarea>${['a','b','c','d'].map(x=>`<input class="input" id="fo${x}${n}" placeholder="${x.toUpperCase()} хариулт" value="${escapeHtml(q['option_'+x]||'')}">`).join('')}<select class="input" id="fans${n}"><option ${q.correct_option==='A'?'selected':''}>A</option><option ${q.correct_option==='B'?'selected':''}>B</option><option ${q.correct_option==='C'?'selected':''}>C</option><option ${q.correct_option==='D'?'selected':''}>D</option></select></div>`}).join('')}
+async function adminSaveFinalQuestions(){for(let n=1;n<=10;n++){let payload={p_question_no:n,p_question:document.getElementById('fq'+n).value.trim(),p_option_a:document.getElementById('foa'+n).value.trim(),p_option_b:document.getElementById('fob'+n).value.trim(),p_option_c:document.getElementById('foc'+n).value.trim(),p_option_d:document.getElementById('fod'+n).value.trim(),p_correct_option:document.getElementById('fans'+n).value};if(!payload.p_question||!payload.p_option_a||!payload.p_option_b||!payload.p_option_c||!payload.p_option_d)return alert('Асуулт '+n+' дутуу байна.');let {error}=await sb.rpc('admin_save_final_question',payload);if(error)return alert('Алдаа: '+error.message)}alert('✅ 10 асуулт хадгалагдлаа.')}
+
+sb.auth.onAuthStateChange(()=>setTimeout(loadSession,0)); loadSession();
+</script>
+
+<div id="adminPage" class="page hidden">
+  <div class="card">
+    <div class="row" style="justify-content:space-between;align-items:center">
+      <div>
+        <div class="tiny">ADMIN PANEL</div>
+        <h2 style="margin:4px 0 0">⚙️ Promo удирдлага</h2>
+      </div>
+      <button class="btn secondary" onclick="backHome()">← Буцах</button>
+    </div>
+
+    <div style="margin-top:18px">
+      <label class="tiny">ШИНЭ PROMO CODE</label>
+      <div class="row" style="gap:8px;margin-top:8px">
+        <input id="adminPromoInput" class="input" placeholder="Жишээ: GH4-2026-001" style="flex:1">
+        <button class="btn" onclick="adminCreatePromo()">Үүсгэх</button>
+      </div>
+      <div id="adminPromoMsg" class="muted" style="margin-top:8px"></div>
+    </div>
+
+    <div class="tournamentCard"><h3>🏆 Эцсийн тэмцээн</h3><div class="tiny">2026.09.13 · 17:30–17:30 · Дүн 17:40</div><button class="btn gold" onclick="adminLoadFinalQuestions()">10 АСУУЛТ ЗАСАХ</button><div id="adminQuestionEditor"></div><button class="btn" onclick="adminSaveFinalQuestions()">💾 10 АСУУЛТ ХАДГАЛАХ</button></div><div style="margin-top:22px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <h3 style="margin:0">Promo code-ууд</h3>
+        <button class="btn secondary" onclick="loadAdminPromos()">🔄 Шинэчлэх</button>
+      </div>
+      <div id="adminPromoList" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(console.error);
+  });
+}
+</script>
+
+
+<script>
+(function(){
+  const START = new Date('2026-09-13T17:30:00+08:00').getTime();
+  function updateContestLabel(){
+    const now = Date.now();
+    const els = document.querySelectorAll(
+      '[id*="contest" i],[id*="competition" i],[class*="contest" i],[class*="competition" i]'
+    );
+    els.forEach(el=>{
+      const txt=(el.textContent||'').trim();
+      if(!txt) return;
+      if(now < START){
+        if(/countdown|секунд|өдөр|цаг|минут/i.test(txt)){
+          const label=document.createElement('div');
+          label.textContent='🔒 9-р сарын 13-ны 17:30-д эхэлнэ';
+          label.style.fontWeight='700';
+          label.style.textAlign='center';
+          el.textContent='';
+          el.appendChild(label);
+        }
+      }
+    });
+  }
+  updateContestLabel();
+  setInterval(updateContestLabel,1000);
+})();
+</script>
+
+<div id="payInfoModal"><div class="pay-card">
+<div id="payForm"><h2>🔓 1 сарын эрх</h2><h2>5,000₮</h2>
+<p>Банк</p><b>🏦 ХАС БАНК</b><p>Данс</p><b>MN72 0032 00</b><div class="pay-account">5006176187</div>
+<p>Хүлээн авагч</p><b>TUWSHINTUR KHADBAATAR</b>
+<p><b>Гүйлгээний утга:</b> Promo Code авах утасны дугаараа бичнэ.</p>
+<input id="promoPhone" class="pay-input" inputmode="tel" placeholder="Promo code авах утасны дугаар">
+<button type="button" id="paidBtn" class="pay-primary">✓ ТӨЛБӨР ТӨЛСӨН</button>
+<button type="button" id="closePayBtn" class="pay-secondary">БУЦАХ</button></div>
+<div id="payThanks" style="display:none;text-align:center"><h2>✅ Төлбөр төлөгдсөн</h2>
+<p>Таны дугаарт Promo Code <b>5–10 минутын дараа</b> очих болно.</p>
+<p>Хүлээцтэй хандсанд баярлалаа. 🙏</p>
+<button type="button" id="closeThanksBtn" class="pay-primary">ОЙЛГОЛОО</button></div>
+</div></div><script id="payment-v2-script">
+(function(){
+function el(i){return document.getElementById(i)}
+window.openPaymentInfo=function(){el('payForm').style.display='block';el('payThanks').style.display='none';el('payInfoModal').classList.add('open')}
+function close(){el('payInfoModal').classList.remove('open')}
+document.addEventListener('DOMContentLoaded',function(){
+el('closePayBtn').onclick=close;el('closeThanksBtn').onclick=close;
+el('paidBtn').onclick=function(){var p=el('promoPhone').value.trim();if(p.length<6){alert('Утасны дугаараа оруулна уу.');return}el('payForm').style.display='none';el('payThanks').style.display='block'};
+var buttons=[].slice.call(document.querySelectorAll('button,a'));
+var p=buttons.find(function(x){return /promo|промо/i.test(x.textContent||'')});
+if(p){var b=document.createElement('button');b.type='button';b.className='payment-open-btn';b.textContent='💳 1 САРЫН ЭРХ — 5,000₮';b.onclick=window.openPaymentInfo;p.parentNode.insertBefore(b,p)}
+});
+})();
+</script>
+<script id="access-expiry-v1">
+function fmtAccessEnd(v){
+  if(!v)return "";
+  const d=new Date(v);
+  return new Intl.DateTimeFormat('mn-MN',{timeZone:'Asia/Ulaanbaatar',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);
+}
+function renderAccessStatus(){
+  const box=document.getElementById('accessStatus');
+  if(!box||!window.me)return;
+  if(!me.access_expires_at){box.innerHTML='<b>🔓 Таны эрх</b><br>Хугацааны мэдээлэл байхгүй.';return;}
+  const end=new Date(me.access_expires_at).getTime(), diff=end-Date.now();
+  if(diff<=0){box.innerHTML='<b>🔒 Таны эрх дууссан</b>';return;}
+  const days=Math.floor(diff/86400000), hrs=Math.floor((diff%86400000)/3600000), mins=Math.floor((diff%3600000)/60000);
+  box.innerHTML='<b>🔓 Таны эрх</b><br><b>'+fmtAccessEnd(me.access_expires_at)+'</b>-д дуусна<br><span class="tiny">⏳ '+days+' өдөр '+hrs+' цаг '+mins+' минут үлдлээ</span>';
+}
+setInterval(renderAccessStatus,30000);
+setInterval(async function(){
+  try{
+    if(!window.me||!me.id)return;
+    const {data:p}=await sb.from('profiles').select('is_active,access_expires_at').eq('id',me.id).single();
+    if(!p)return;
+    me.active=p.is_active;me.access_expires_at=p.access_expires_at;
+    if(!me.active || (me.access_expires_at && new Date(me.access_expires_at).getTime()<=Date.now())){
+      me.active=false; openByState();
+    } else renderAccessStatus();
+  }catch(e){console.error(e)}
+},60000);
+document.addEventListener('DOMContentLoaded',()=>setTimeout(renderAccessStatus,1200));
+</script>
+
+</body></html>

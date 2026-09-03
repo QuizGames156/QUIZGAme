@@ -1,0 +1,17 @@
+ГАМШИГ 4 — УТАСАНД СУУЛГАДАГ PWA
+
+Энэ ZIP одоо PWA бэлэн:
+- manifest.json
+- sw.js
+- 192x192, 512x512 app icon
+- standalone app mode
+
+ЧУХАЛ:
+PWA install ажиллахын тулд файлыг C:/...-оос нээх биш HTTPS сайт дээр байрлуулах хэрэгтэй.
+Дараагийн алхамд GitHub Pages эсвэл өөр HTTPS hosting дээр байршуулна.
+
+Android:
+HTTPS линкийг Chrome-оор нээгээд Install app / Add to Home screen.
+
+iPhone:
+Safari → Share → Add to Home Screen.
