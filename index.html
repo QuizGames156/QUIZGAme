@@ -220,6 +220,7 @@ async function showAdmin(){
   if(!ok)return alert("Admin эрх байхгүй байна.");
   hidePages();adminPage.classList.remove("hidden");
   await loadAdminPromos();
+  await loadAdminPaymentRequests();
 }
 
 async function adminCreatePromo(){
@@ -251,6 +252,36 @@ async function loadAdminPromos(){
       <div class="tiny">${x.used_email ? x.used_email : ""}</div>
     </div>
   </div>`).join("");
+}
+
+
+async function loadAdminPaymentRequests(){
+  const box=document.getElementById('adminPaymentRequests');
+  if(!box)return;
+  const ok=await checkAdmin();
+  if(!ok)return;
+  box.innerHTML='<p class="muted">Ачаалж байна…</p>';
+  const {data,error}=await sb.rpc('admin_list_payment_requests');
+  if(error){box.innerHTML='<div class="notice" style="border-color:#7f1d1d;background:#3b0d0d">Алдаа: '+escapeHtml(error.message)+'</div>';return}
+  if(!data?.length){box.innerHTML='<p class="muted">Төлбөр шалгуулах хүсэлт алга.</p>';return}
+  box.innerHTML=data.map(x=>{
+    const st=x.status==='pending'?'⏳ ХҮЛЭЭЖ БАЙНА':x.status==='approved'?'✅ БАТАЛСАН':'❌ ТАТГАЛЗСАН';
+    const actions=x.status==='pending'?`<div class="row" style="gap:8px;margin-top:8px"><button class="btn" onclick="adminApprovePayment('${x.id}')">✅ БАТЛАХ</button><button class="btn secondary" onclick="adminRejectPayment('${x.id}')">❌ ТАТГАЛЗАХ</button></div>`:'';
+    return `<div class="notice" style="margin:10px 0"><div class="row" style="justify-content:space-between;align-items:flex-start"><div><b>${escapeHtml(x.display_name||x.email||'Хэрэглэгч')}</b><div class="tiny">📱 ${escapeHtml(x.phone||'')} · 💵 ${Number(x.amount||5000).toLocaleString()}₮</div><div class="tiny">${new Date(x.created_at).toLocaleString('mn-MN')}</div></div><b>${st}</b></div>${actions}</div>`;
+  }).join('');
+}
+async function adminApprovePayment(id){
+  if(!confirm('Энэ төлбөр дансанд орсныг шалгасан уу? Баталбал 1 сарын эрх шууд нээгдэнэ.'))return;
+  const {data,error}=await sb.rpc('admin_approve_payment_request',{p_request_id:id});
+  if(error)return alert('Алдаа: '+error.message);
+  alert(data?.message||'✅ Эрх идэвхжлээ.');
+  await loadAdminPaymentRequests();
+}
+async function adminRejectPayment(id){
+  if(!confirm('Энэ хүсэлтийг татгалзах уу?'))return;
+  const {data,error}=await sb.rpc('admin_reject_payment_request',{p_request_id:id});
+  if(error)return alert('Алдаа: '+error.message);
+  await loadAdminPaymentRequests();
 }
 
 function rankFor(x){let r=RANKS[0][1];for(const [need,name] of RANKS)if(x>=need)r=name;return r}
@@ -641,7 +672,15 @@ sb.auth.onAuthStateChange(()=>setTimeout(loadSession,0)); loadSession();
       <div id="adminPromoMsg" class="muted" style="margin-top:8px"></div>
     </div>
 
-    <div class="tournamentCard"><h3>🏆 Тэмцээн</h3><div class="tiny">2026.09.13 · 17:00–17:30 · Дүн 17:40</div><button class="btn gold" onclick="adminLoadFinalQuestions()">10 АСУУЛТ ЗАСАХ</button><div id="adminQuestionEditor"></div><button class="btn" onclick="adminSaveFinalQuestions()">💾 10 АСУУЛТ ХАДГАЛАХ</button></div><div style="margin-top:22px">
+    <div class="tournamentCard"><h3>🏆 Тэмцээн</h3><div class="tiny">2026.09.13 · 17:00–17:30 · Дүн 17:40</div><button class="btn gold" onclick="adminLoadFinalQuestions()">10 АСУУЛТ ЗАСАХ</button><div id="adminQuestionEditor"></div><button class="btn" onclick="adminSaveFinalQuestions()">💾 10 АСУУЛТ ХАДГАЛАХ</button></div>
+    <div style="margin-top:22px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div><h3 style="margin:0">💰 Төлбөрийн хүсэлтүүд</h3><div class="tiny">Дансанд орсныг шалгаад БАТЛАХ дарна.</div></div>
+        <button class="btn secondary" onclick="loadAdminPaymentRequests()">🔄 Шинэчлэх</button>
+      </div>
+      <div id="adminPaymentRequests" style="margin-top:12px"></div>
+    </div>
+    <div style="margin-top:22px">
       <div class="row" style="justify-content:space-between;align-items:center">
         <h3 style="margin:0">Promo code-ууд</h3>
         <button class="btn secondary" onclick="loadAdminPromos()">🔄 Шинэчлэх</button>
@@ -693,25 +732,66 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
 <div id="payForm"><h2>🔓 1 сарын эрх</h2><h2>5,000₮</h2>
 <p>Банк</p><b>🏦 ХАС БАНК</b><p>Данс</p><b>MN72 0032 00</b><div class="pay-account">5006176187</div>
 <p>Хүлээн авагч</p><b>TUWSHINTUR KHADBAATAR</b>
-<p><b>Гүйлгээний утга:</b> Promo Code авах утасны дугаараа бичнэ.</p>
-<input id="promoPhone" class="pay-input" inputmode="tel" placeholder="Promo code авах утасны дугаар">
-<button type="button" id="paidBtn" class="pay-primary">✓ ТӨЛБӨР ТӨЛСӨН</button>
+<p><b>Гүйлгээний утга:</b> Доор оруулах утасны дугаараа яг адил бичээрэй.</p>
+<input id="promoPhone" class="pay-input" inputmode="tel" placeholder="Утасны дугаар">
+<button type="button" id="paidBtn" class="pay-primary">✅ ТӨЛБӨР ШАЛГУУЛАХ</button>
 <button type="button" id="closePayBtn" class="pay-secondary">БУЦАХ</button></div>
-<div id="payThanks" style="display:none;text-align:center"><h2>✅ Төлбөр төлөгдсөн</h2>
-<p>Таны дугаарт Promo Code <b>5–10 минутын дараа</b> очих болно.</p>
-<p>Хүлээцтэй хандсанд баярлалаа. 🙏</p>
-<button type="button" id="closeThanksBtn" class="pay-primary">ОЙЛГОЛОО</button></div>
-</div></div><script id="payment-v2-script">
+<div id="payThanks" style="display:none;text-align:center"><h2 id="payStatusTitle">⏳ Хүсэлт илгээгдлээ</h2>
+<p id="payStatusText">Админ төлбөр дансанд орсныг шалгаад батална. Батлагдмагц таны 1 сарын эрх шууд идэвхжинэ.</p>
+<div id="payStatusBox" class="notice" style="margin-top:12px"></div>
+<button type="button" id="checkPayBtn" class="pay-primary">🔄 ТӨЛӨВ ШАЛГАХ</button>
+<button type="button" id="closeThanksBtn" class="pay-secondary">ХААХ</button></div>
+</div></div><script id="payment-v3-script">
 (function(){
 function el(i){return document.getElementById(i)}
-window.openPaymentInfo=function(){el('payForm').style.display='block';el('payThanks').style.display='none';el('payInfoModal').classList.add('open')}
 function close(){el('payInfoModal').classList.remove('open')}
+function setStatus(req){
+  const box=el('payStatusBox');
+  if(!req){box.innerHTML='Одоогоор хүсэлт олдсонгүй.';return}
+  if(req.status==='approved'){
+    el('payStatusTitle').textContent='✅ ТӨЛБӨР БАТЛАГДЛАА';
+    el('payStatusText').textContent='Таны 1 сарын эрх идэвхжсэн. Одоо тоглоомоо ашиглаж болно.';
+    box.innerHTML='✅ Баталсан · '+new Date(req.reviewed_at||req.created_at).toLocaleString('mn-MN');
+    setTimeout(()=>{ if(typeof loadSession==='function') loadSession(); },500);
+  }else if(req.status==='rejected'){
+    el('payStatusTitle').textContent='❌ ХҮСЭЛТ ТАТГАЛЗАГДЛАА';
+    el('payStatusText').textContent='Гүйлгээний мэдээллээ шалгаад дахин хүсэлт илгээнэ үү.';
+    box.innerHTML='❌ Татгалзсан';
+  }else{
+    el('payStatusTitle').textContent='⏳ ШАЛГАЖ БАЙНА';
+    el('payStatusText').textContent='Төлбөр баталгаажаагүй байна. Админ дансаа шалгасны дараа эрх автоматаар нээгдэнэ.';
+    box.innerHTML='⏳ Хүлээгдэж байна · '+new Date(req.created_at).toLocaleString('mn-MN');
+  }
+}
+async function checkMine(){
+  if(!window.sb)return;
+  const {data,error}=await sb.rpc('get_my_latest_payment_request');
+  if(error){el('payStatusBox').innerHTML='⚠️ Төлөв шалгахад алдаа: '+escapeHtml(error.message);return}
+  setStatus(data);
+}
+window.openPaymentInfo=async function(){
+  el('payForm').style.display='block';el('payThanks').style.display='none';el('payInfoModal').classList.add('open');
+  try{
+    const {data}=await sb.rpc('get_my_latest_payment_request');
+    if(data && data.status==='pending'){el('payForm').style.display='none';el('payThanks').style.display='block';setStatus(data)}
+  }catch(e){}
+}
 document.addEventListener('DOMContentLoaded',function(){
-el('closePayBtn').onclick=close;el('closeThanksBtn').onclick=close;
-el('paidBtn').onclick=function(){var p=el('promoPhone').value.trim();if(p.length<6){alert('Утасны дугаараа оруулна уу.');return}el('payForm').style.display='none';el('payThanks').style.display='block'};
-var buttons=[].slice.call(document.querySelectorAll('button,a'));
-var p=buttons.find(function(x){return /promo|промо/i.test(x.textContent||'')});
-if(p){var b=document.createElement('button');b.type='button';b.className='payment-open-btn';b.textContent='💳 1 САРЫН ЭРХ — 5,000₮';b.onclick=window.openPaymentInfo;p.parentNode.insertBefore(b,p)}
+  el('closePayBtn').onclick=close;el('closeThanksBtn').onclick=close;el('checkPayBtn').onclick=checkMine;
+  el('paidBtn').onclick=async function(){
+    const p=el('promoPhone').value.trim();
+    if(p.length<6){alert('Утасны дугаараа оруулна уу.');return}
+    this.disabled=true;this.textContent='⏳ ИЛГЭЭЖ БАЙНА…';
+    const {data,error}=await sb.rpc('create_payment_request',{p_phone:p});
+    this.disabled=false;this.textContent='✅ ТӨЛБӨР ШАЛГУУЛАХ';
+    if(error)return alert('Алдаа: '+error.message);
+    if(!data?.success)return alert(data?.message||'Хүсэлт илгээж чадсангүй.');
+    el('payForm').style.display='none';el('payThanks').style.display='block';
+    setStatus(data.request);
+  };
+  var buttons=[].slice.call(document.querySelectorAll('button,a'));
+  var p=buttons.find(function(x){return /promo|промо/i.test(x.textContent||'')});
+  if(p){var b=document.createElement('button');b.type='button';b.className='payment-open-btn';b.textContent='💳 1 САРЫН ЭРХ — 5,000₮';b.onclick=window.openPaymentInfo;p.parentNode.insertBefore(b,p)}
 });
 })();
 </script>
