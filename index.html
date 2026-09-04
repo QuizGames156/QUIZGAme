@@ -212,8 +212,25 @@ body:after{content:"";position:fixed;left:-10%;right:-10%;top:-28%;height:54vh;z
 }
 </style>
 
+
+<style id="mobile-theme-and-update-v17">
+.mobileThemeFab,.mobileThemeSheet{display:none}
+.updateNotice{position:fixed;inset:0;z-index:200000;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:18px}.updateNotice.hidden{display:none!important}.updateNoticeCard{width:min(420px,100%);text-align:center;border-radius:26px;padding:24px 20px;background:linear-gradient(160deg,color-mix(in srgb,var(--theme-card) 94%,#000),color-mix(in srgb,var(--theme-bg) 96%,#000));border:1px solid rgba(var(--theme-rgb),.55);box-shadow:0 26px 90px #000c,0 0 42px rgba(var(--theme-rgb),.22),inset 0 1px 0 #ffffff18}.updateSpark{font-size:48px;filter:drop-shadow(0 0 18px var(--theme));animation:updatePulse 1.5s ease-in-out infinite}.updateBadge{display:inline-block;margin:7px 0 2px;padding:6px 12px;border-radius:999px;background:rgba(var(--theme-rgb),.13);border:1px solid rgba(var(--theme-rgb),.48);color:var(--theme3);font-size:11px;font-weight:1000;letter-spacing:1px}.updateNoticeCard h2{margin:10px 0 8px;font-size:24px}.updateNoticeCard p{color:#bed0cb;line-height:1.55;margin:0 0 17px}.updateRefresh,.updateLater{width:100%;min-height:48px;border-radius:14px;font-weight:1000;cursor:pointer}.updateRefresh{border:1px solid rgba(var(--theme-rgb),.75);background:linear-gradient(135deg,var(--theme2),var(--theme));color:#fff;box-shadow:0 0 24px rgba(var(--theme-rgb),.22)}.updateLater{margin-top:8px;border:1px solid #ffffff20;background:#ffffff08;color:#dbe6e3}@keyframes updatePulse{50%{transform:scale(1.08);filter:drop-shadow(0 0 28px var(--theme))}}
+@media(max-width:700px){.mobileThemeFab{display:grid;position:fixed;right:12px;top:12px;z-index:86;width:48px;height:48px;border-radius:16px;place-items:center;font-size:23px;border:1px solid rgba(var(--theme-rgb),.58);background:linear-gradient(145deg,rgba(var(--theme-rgb),.22),rgba(2,16,16,.92));color:#fff;box-shadow:0 10px 32px #0008,0 0 22px rgba(var(--theme-rgb),.22);backdrop-filter:blur(16px)}.mobileThemeSheet{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.64);backdrop-filter:blur(8px);display:flex;align-items:flex-end;padding:10px}.mobileThemeSheet.hidden{display:none!important}.mobileThemeCard{width:100%;border-radius:24px 24px 18px 18px;padding:16px;background:linear-gradient(160deg,color-mix(in srgb,var(--theme-card) 94%,#000),color-mix(in srgb,var(--theme-bg) 97%,#000));border:1px solid rgba(var(--theme-rgb),.48);box-shadow:0 -22px 70px #000b,0 0 30px rgba(var(--theme-rgb),.15)}.mobileThemeHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.mobileThemeHead b{font-size:17px}.mobileThemeHead small{display:block;color:#9fb8b2;margin-top:3px}.mobileThemeHead button{width:36px;height:36px;border-radius:50%;border:1px solid #ffffff20;background:#ffffff0b;color:#fff;font-size:18px}.mobileThemeChoices{display:grid;gap:8px}.mobileThemeChoice{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;width:100%;padding:12px 13px;border-radius:15px;border:1px solid #ffffff16;background:#ffffff08;color:#fff;text-align:left;font-weight:900}.mobileThemeChoice.active{border-color:var(--theme);background:rgba(var(--theme-rgb),.16);box-shadow:0 0 20px rgba(var(--theme-rgb),.12) inset}.mobileThemeChoice .dot{width:22px;height:22px}.mobileThemeChoice b{font-size:18px}.updateNoticeCard{padding:22px 17px;border-radius:23px}.updateNoticeCard h2{font-size:21px}.updateNoticeCard p{font-size:13px}.updateSpark{font-size:42px}}
+</style>
 </head>
-<body><div class="wrap">
+<body>
+<div id="updateNotice" class="updateNotice hidden">
+  <div class="updateNoticeCard">
+    <div class="updateSpark">✨</div>
+    <div class="updateBadge">ШИНЭЧЛЭЛ</div>
+    <h2>Тоглоом шинэчлэгдлээ</h2>
+    <p>Шинэ хувилбарыг бүрэн ачаалуулахын тулд <b>Refresh</b> хийх эсвэл сайтаас гараад дахин ороорой.</p>
+    <button class="updateRefresh" onclick="markUpdateSeen();location.reload()">🔄 REFRESH ХИЙХ</button>
+    <button class="updateLater" onclick="closeUpdateNotice()">ОЙЛГОЛОО</button>
+  </div>
+</div>
+<div class="wrap">
 
 <section id="auth">
  <div class="card hero">
@@ -273,6 +290,19 @@ body:after{content:"";position:fixed;left:-10%;right:-10%;top:-28%;height:54vh;z
      <button class="themeLine" onclick="setGameTheme('gold')"><i class="dot gold"></i>Solar Gold</button>
    </div>
  </aside>
+ <button id="mobileThemeFab" class="mobileThemeFab" type="button" onclick="openMobileThemeSheet()" aria-label="Өнгө сонгох">🎨</button>
+ <div id="mobileThemeSheet" class="mobileThemeSheet hidden" onclick="if(event.target===this)closeMobileThemeSheet()">
+   <div class="mobileThemeCard">
+     <div class="mobileThemeHead"><div><b>🎨 ӨНГӨӨ СОНГОХ</b><small>Тоглоомын бүх өнгө шууд солигдоно</small></div><button type="button" onclick="closeMobileThemeSheet()">✕</button></div>
+     <div class="mobileThemeChoices">
+       <button class="mobileThemeChoice" data-theme-choice="emerald" onclick="setGameTheme('emerald');closeMobileThemeSheet()"><i class="dot emerald"></i><span>Emerald</span><b>💚</b></button>
+       <button class="mobileThemeChoice" data-theme-choice="blue" onclick="setGameTheme('blue');closeMobileThemeSheet()"><i class="dot blue"></i><span>Cyber Blue</span><b>💙</b></button>
+       <button class="mobileThemeChoice" data-theme-choice="purple" onclick="setGameTheme('purple');closeMobileThemeSheet()"><i class="dot purple"></i><span>Neon Purple</span><b>💜</b></button>
+       <button class="mobileThemeChoice" data-theme-choice="crimson" onclick="setGameTheme('crimson');closeMobileThemeSheet()"><i class="dot crimson"></i><span>Crimson</span><b>❤️</b></button>
+       <button class="mobileThemeChoice" data-theme-choice="gold" onclick="setGameTheme('gold');closeMobileThemeSheet()"><i class="dot gold"></i><span>Solar Gold</span><b>🧡</b></button>
+     </div>
+   </div>
+ </div>
  <main class="cyberMain">
    <header class="cyberTopbar">
      <div class="searchGhost">⌕ <span>Хайх... (жишээ: гамшиг, аюулт үзэгдэл...)</span></div>
@@ -286,7 +316,7 @@ body:after{content:"";position:fixed;left:-10%;right:-10%;top:-28%;height:54vh;z
         <div id="rankName" class="rankClick cyberRank" onclick="showRankModal()"></div>
         <div id="rankProgressHome"></div>
       </div>
-      <div class="rankBadge"><span>🌿</span><div><b>Шинэ суралцагч</b><small>Дараагийн цол: 80%</small></div></div>
+      <div class="rankBadge" id="dashRankBadge"><span>🌿</span><div><b>Ачаалж байна…</b><small>Таны бодит цол</small></div></div>
       <div id="accessStatus" class="hidden"></div><div id="leaderHome" class="hidden"></div>
     </section>
 
@@ -297,7 +327,7 @@ body:after{content:"";position:fixed;left:-10%;right:-10%;top:-28%;height:54vh;z
     </section>
 
     <section class="continueHero neonPanel" onclick="guardDaily(startLearning)">
-      <div class="continueIcon">📖</div><div><h2>ҮРГЭЛЖЛҮҮЛЭН СУРАХ</h2><p>Таны сүүлд сурсан хэсгээс үргэлжлүүлнэ</p><b>4.1.7 - Онцгой байдал</b><div class="continueBar"><i></i></div><small>12/24</small></div><div class="roundGo">→</div>
+      <div class="continueIcon">📖</div><div><h2>ҮРГЭЛЖЛҮҮЛЭН СУРАХ</h2><p>Таны бодит ахицаас үргэлжлүүлнэ</p><b id="dashContinueTerm">Ачаалж байна…</b><div class="continueBar"><i id="dashContinueBar"></i></div><small id="dashContinueCount">0/24</small></div><div class="roundGo">→</div>
     </section>
 
     <section id="home" class="homeDashboard">
@@ -312,13 +342,13 @@ body:after{content:"";position:fixed;left:-10%;right:-10%;top:-28%;height:54vh;z
 
       <div class="lowerGrid">
         <div class="widgetCard"><div class="widgetHead"><b>▥ ЧАНСАА</b><button onclick="showLeaderboard()">Бүгдийг харах →</button></div>
-          <div class="miniRanks"><div><strong>🥇</strong><span>Temuulen</span><b>12,430 XP</b></div><div><strong>🥈</strong><span>Suvdaa</span><b>11,982 XP</b></div><div class="you"><strong>🥉</strong><span>KaRu</span><b id="xp">0 XP</b></div><div><strong>4</strong><span>Anu</span><b>8,772 XP</b></div></div>
+          <div class="miniRanks" id="dashLeaderboard"><div><span>Чансаа ачаалж байна…</span></div></div><span id="xp" class="hidden">0 XP</span>
         </div>
         <div class="widgetCard progressWidget"><div class="widgetHead"><b>↗ Миний ахиц</b><button onclick="showMastery()">Дэлгэрэнгүй →</button></div>
-          <div class="progressRing"><span id="learned">0/24</span><small>Нийт хэсэг</small></div><div class="progressFacts"><p>Зөв хариулт <b>186</b></p><p>Буруу хариулт <b>24</b></p><p>Нарийвчлал <b>88%</b></p></div>
+          <div class="progressRing"><span id="learned">0/24</span><small>Нийт хэсэг</small></div><div class="progressFacts"><p>Шалгалтын зөв <b id="dashCorrect">—</b></p><p>Шалгалтын буруу <b id="dashWrong">—</b></p><p>Нарийвчлал <b id="dashAccuracy">—</b></p></div>
         </div>
         <div class="widgetCard"><div class="widgetHead"><b>💬 Сүүлийн чат</b><button onclick="toggleChat(true)">Бүгдийг харах →</button></div>
-          <div class="chatPreview"><p><b>Temuulen</b> Сайн байна уу бүхэндээ!</p><p><b>Suvdaa</b> Өнөөдрийн тэмцээнд оролцох уу?</p><p><b>Anu</b> 4.1.7 хэсэг хэцүү юм аа 😅</p></div>
+          <div class="chatPreview" id="dashChatPreview"><p>Сүүлийн чат ачаалж байна…</p></div>
         </div>
       </div>
       <div id="weakArea" class="weakBox"></div>
@@ -543,6 +573,20 @@ async function refreshStats(){
  document.getElementById("position").textContent="#"+(mine?.rank_number||"-");
  const top=(board||[])[0];
  leaderHome.innerHTML=top&&top.player_username===me.username?`<div class="leaderHero"><div class="tiny">🏆 ЧАНСААГ ТЭРГҮҮЛЭГЧ</div><div class="leaderName">👑 ${escapeHtml(me.name)}</div><b>${rankFor(me.xp)} · ${me.xp.toLocaleString()} XP</b></div>`:'';
+ // Dashboard widgets: only real Supabase/account data, never demo values.
+ const dl=document.getElementById('dashLeaderboard');
+ if(dl){
+   dl.innerHTML=(board||[]).slice(0,4).map((x,i)=>`<div class="${x.player_username===me.username?'you':''}"><strong>${i<3?['🥇','🥈','🥉'][i]:'#'+(x.rank_number||i+1)}</strong><span>${escapeHtml(x.player_display_name)}</span><b>${Number(x.player_xp||0).toLocaleString()} XP</b></div>`).join('')||'<div><span>Одоогоор чансааны мэдээлэл алга.</span></div>';
+ }
+ const rb=document.getElementById('dashRankBadge');
+ if(rb){const icons=['🌱','📖','🛡️','🦅','👑'];rb.innerHTML=`<span>${icons[ri]||'🛡️'}</span><div><b>${rankFor(me.xp)}</b><small>${next?'Дараагийн цол: '+pct+'%':'Хамгийн дээд цол'}</small></div>`}
+ const ci=Math.max(0,Math.min(23,(Number(me.unlocked)||1)-1));
+ const ct=document.getElementById('dashContinueTerm'),cc=document.getElementById('dashContinueCount'),cb=document.getElementById('dashContinueBar');
+ if(ct)ct.textContent=`4.1.${ci+1} - ${DATA[ci][0]}`; if(cc)cc.textContent=`${Math.min(Number(me.unlocked)||0,24)}/24`; if(cb)cb.style.width=(Math.min(Number(me.unlocked)||0,24)/24*100)+'%';
+ // Real exam history totals for the progress widget.
+ try{const {data:hist,error:he}=await sb.rpc('get_my_exam_history');if(!he){const h=hist||[];const c=h.reduce((a,x)=>a+Number(x.correct_count||0),0),t=h.reduce((a,x)=>a+Number(x.total_count||0),0),w=Math.max(0,t-c);document.getElementById('dashCorrect').textContent=c.toLocaleString();document.getElementById('dashWrong').textContent=w.toLocaleString();document.getElementById('dashAccuracy').textContent=t?Math.round(c/t*100)+'%':'—';}}catch(e){}
+ // Real latest public chat messages.
+ try{const {data:cp,error:ce}=await sb.from('chat_messages').select('display_name,message,created_at').order('created_at',{ascending:false}).limit(3);const box=document.getElementById('dashChatPreview');if(box&&!ce)box.innerHTML=(cp||[]).map(x=>`<p><b>${escapeHtml(x.display_name||'Сурагч')}</b> ${escapeHtml(x.message||'')}</p>`).join('')||'<p>Одоогоор чат алга.</p>';}catch(e){}
  await refreshDailyExamGate();
 
  const {data:count}=await sb.rpc("get_player_count");
@@ -1139,7 +1183,7 @@ function setGameTheme(theme,save=true){
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute('content',GAME_THEMES[theme].meta);
   const label=document.getElementById('themeName'); if(label) label.textContent=GAME_THEMES[theme].name;
-  document.querySelectorAll('.themeSwatch').forEach(b=>b.classList.toggle('active',b.dataset.themeChoice===theme));
+  document.querySelectorAll('.themeSwatch,.mobileThemeChoice').forEach(b=>b.classList.toggle('active',b.dataset.themeChoice===theme));
 }
 function loadGameTheme(){
   let theme='emerald'; try{theme=localStorage.getItem('gamshig4_theme')||'emerald'}catch(e){}
@@ -1288,6 +1332,15 @@ hr{border-color:rgba(var(--theme-rgb),.18)!important}
  const mo=new MutationObserver(()=>{const w=document.getElementById('welcome'),t=document.getElementById('topUserName');if(w&&t&&w.textContent){let s=w.textContent.replace(/^Сайн байна уу,?\s*/i,'').replace(/[!！]$/,'').trim();if(s)t.textContent=s}});
  document.addEventListener('DOMContentLoaded',()=>{const w=document.getElementById('welcome');if(w)mo.observe(w,{childList:true,subtree:true,characterData:true})});
 })();
+</script>
+
+<script id="mobile-theme-update-js-v17">
+function openMobileThemeSheet(){const x=document.getElementById('mobileThemeSheet');if(x)x.classList.remove('hidden')}
+function closeMobileThemeSheet(){const x=document.getElementById('mobileThemeSheet');if(x)x.classList.add('hidden')}
+function markUpdateSeen(){try{sessionStorage.setItem('gamshig4_update_notice_v17','1')}catch(e){}}
+function closeUpdateNotice(){const x=document.getElementById('updateNotice');if(x)x.classList.add('hidden');markUpdateSeen()}
+function maybeShowUpdateNotice(){const app=document.getElementById('app'),notice=document.getElementById('updateNotice');if(!app||!notice||app.classList.contains('hidden'))return;try{if(sessionStorage.getItem('gamshig4_update_notice_v17')==='1')return}catch(e){}notice.classList.remove('hidden')}
+document.addEventListener('DOMContentLoaded',()=>{const app=document.getElementById('app');if(app){new MutationObserver(()=>{if(!app.classList.contains('hidden'))setTimeout(maybeShowUpdateNotice,350)}).observe(app,{attributes:true,attributeFilter:['class']});}setTimeout(maybeShowUpdateNotice,1400)});
 </script>
 </body></html>
 <style id="full-tournament-liquid-theme-v2">
