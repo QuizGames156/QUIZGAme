@@ -23,6 +23,30 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
 .rankClick{cursor:pointer;padding:10px 12px;border:1px solid #2d4866;border-radius:14px;background:#0b1a2b;display:inline-block}.modal{position:fixed;inset:0;background:#000a;display:grid;place-items:center;padding:16px;z-index:99}.modalCard{width:min(520px,100%);max-height:85vh;overflow:auto;background:#0e1d30;border:1px solid #35516f;border-radius:22px;padding:18px}.rankStep{padding:11px;border-bottom:1px solid #223b57}.adminHero{background:linear-gradient(135deg,#3a2405,#17120a);border:1px solid #a86f13;border-radius:18px;padding:15px;margin:10px 0}.chatFab{position:fixed;right:16px;bottom:18px;width:58px;height:58px;border-radius:50%;border:0;background:#22c55e;font-size:25px;z-index:40;box-shadow:0 8px 30px #0008}.chatPanel{position:fixed;right:12px;bottom:84px;width:min(390px,calc(100vw - 24px));height:min(600px,72vh);z-index:45;background:#0b1727;border:1px solid #35516f;border-radius:22px;padding:13px;display:flex;flex-direction:column;box-shadow:0 18px 60px #000b}.chatMsgs{flex:1;overflow:auto;padding:6px}.chatMsg{padding:9px 10px;margin:7px 0;background:#13263d;border-radius:13px}.chatHead{display:flex;justify-content:space-between;gap:8px}.exitLearn{width:auto;margin:0 0 10px;padding:9px 12px}.weakBox{margin-top:12px;padding:12px;border:1px solid #5a4621;background:#2a210d;border-radius:15px}.rankProgress{height:12px;background:#07111d;border-radius:99px;overflow:hidden;margin:9px 0}.rankProgress i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#eab308);transition:width .8s ease}.leaderHero{background:linear-gradient(135deg,#5b4100,#211800);border:1px solid #eab308;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 0 30px #eab30822}.leaderName{font-size:25px;font-weight:900}.chatRank{font-size:11px;padding:2px 7px;border-radius:99px;background:#243a52}.chatRank.first{background:#6b5000;color:#ffe58a}.tournamentCard{border:1px solid #7c5b12;background:linear-gradient(135deg,#2c2109,#111b29);border-radius:18px;padding:15px;margin-top:12px}.timer{font-size:34px;font-weight:900;letter-spacing:2px}.xpPop{position:fixed;top:20%;left:50%;transform:translateX(-50%);font-size:28px;font-weight:900;z-index:120;animation:xpfloat 1.1s ease forwards}@keyframes xpfloat{to{opacity:0;transform:translate(-50%,-45px)}}
 @media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}h1{font-size:23px}.wrap{padding-left:10px;padding-right:10px}.card{border-radius:20px}}
 .examLock{border:1px solid #ef4444;background:#2b1014;border-radius:16px;padding:13px;margin:12px 0}.examTimer{font-size:42px;font-weight:1000;text-align:center}.examMeta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.lockedAction{opacity:.48;filter:grayscale(.35)}
+
+/* Tournament registration liquid status */
+.regLiquid{position:relative;overflow:hidden;border:1px solid #22c55e;border-radius:18px;padding:18px 14px;margin:12px 0;min-height:76px;background:#062416;box-shadow:0 0 28px #22c55e33,inset 0 0 24px #22c55e22}
+.regLiquid::before,.regLiquid::after{content:"";position:absolute;left:-18%;width:136%;height:115px;border-radius:42%;background:rgba(34,197,94,.28);animation:regWave 5s linear infinite;bottom:-72px}
+.regLiquid::after{background:rgba(74,222,128,.17);animation-duration:7s;animation-direction:reverse;bottom:-80px;transform:rotate(18deg)}
+.regLiquid .regShine{position:absolute;inset:-60% -30%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.18) 49%,transparent 63%);animation:regShimmer 3.2s ease-in-out infinite}
+.regLiquid .regText{position:relative;z-index:2;text-align:center;font-weight:1000;font-size:18px;letter-spacing:.5px;text-shadow:0 0 12px #4ade80}
+.regLiquid .regSub{position:relative;z-index:2;text-align:center;margin-top:5px;font-size:12px;color:#bbf7d0}
+@keyframes regWave{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes regShimmer{0%,20%{transform:translateX(-45%)}70%,100%{transform:translateX(45%)}}
+@media (prefers-reduced-motion:reduce){.regLiquid::before,.regLiquid::after,.regLiquid .regShine{animation:none}}
+
+/* HOME tournament liquid card */
+.tournamentHomeLiquid{position:relative;overflow:hidden;isolation:isolate;border:1px solid #22c55e!important;background:linear-gradient(135deg,#071d17,#0a251b 55%,#071722)!important;box-shadow:0 0 22px #22c55e22,inset 0 0 28px #22c55e12}
+.homeTournamentInner{position:relative;z-index:5}
+.homeRegOpen{display:inline-block;margin-top:8px;padding:6px 11px;border-radius:999px;background:#052e1b99;border:1px solid #4ade80;color:#bbf7d0;font-size:12px;font-weight:900;letter-spacing:.5px;box-shadow:0 0 18px #22c55e55;animation:homeRegPulse 1.7s ease-in-out infinite}
+.homeLiquidWave{position:absolute;z-index:1;width:145%;height:145%;left:-22%;top:42%;border-radius:43%;background:linear-gradient(135deg,#22c55ecc,#16a34acc 55%,#4ade80aa);filter:drop-shadow(0 -5px 12px #4ade8055);transform-origin:50% 48%;pointer-events:none}
+.homeLiquidWave.wave1{animation:homeWaveSpin 7s linear infinite;opacity:.48}
+.homeLiquidWave.wave2{top:49%;left:-28%;border-radius:46%;animation:homeWaveSpinBack 10s linear infinite;opacity:.28}
+.homeLiquidShine{position:absolute;z-index:3;inset:-60% -40%;background:linear-gradient(110deg,transparent 35%,#ffffff00 43%,#ffffff38 50%,#ffffff00 57%,transparent 65%);transform:translateX(-45%) rotate(4deg);animation:homeShimmer 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes homeWaveSpin{to{transform:rotate(360deg)}}
+@keyframes homeWaveSpinBack{to{transform:rotate(-360deg)}}
+@keyframes homeShimmer{0%{transform:translateX(-45%) rotate(4deg)}60%,100%{transform:translateX(45%) rotate(4deg)}}
+@keyframes homeRegPulse{0%,100%{box-shadow:0 0 10px #22c55e44}50%{box-shadow:0 0 26px #4ade80aa}}
 </style>
 
 <link rel="manifest" href="manifest.json">
@@ -73,7 +97,7 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
 <section id="activation" class="hidden">
  <div class="card hero"><div class="seal">🎟️</div><h1>ЭРХ ИДЭВХЖҮҮЛЭХ</h1><p class="muted" id="activationName"></p></div>
  <div class="card">
-  <div class="notice">Төлбөр баталгаажсаны дараа авсан <b>нэг удаагийн Promo Code</b>-оо оруулна. Нэг код зөвхөн нэг бүртгэлд ашиглагдана.</div>
+  <div class="notice">💳 Төлбөр шалгуулах хүсэлтээ илгээсний дараа <b>хүлээгдэж байна</b> төлөв автоматаар шалгагдана. Батлагдмагц эрх шууд нээгдэнэ.</div>
   <input id="promoInput" class="input code" placeholder="Ж: GH4-XXXX-XXXX">
   <button class="btn gold" onclick="activatePromo()">PROMO CODE ИДЭВХЖҮҮЛЭХ</button>
   <button class="btn alt" onclick="logout()">ӨӨР БҮРТГЭЛЭЭР НЭВТРЭХ</button>
@@ -101,7 +125,7 @@ h1{font-size:26px;margin:14px 0 4px;line-height:1.2}h2{margin:5px 0 12px}.sub{co
   <button class="btn gold dailyLocked" onclick="guardDaily(startMaster)">⚡ XP СОРИЛ</button>
   <button class="btn dailyLocked" onclick="guardDaily(openRecall)">🎙️⌨️ ЦЭЭЖЭЭР ШАЛГУУЛАХ</button>
   <button class="btn alt dailyLocked" onclick="guardDaily(openLiveBattle)">⚡ QUIZ BATTLE</button>
-  <div id="tournamentHome" class="tournamentCard"><b>🏆 ТЭМЦЭЭН</b><div class="muted tiny" style="margin-top:5px">Ойрын үед төлөвлөсөн тэмцээнүүд</div><div style="margin-top:9px"><b>📅 2026.09.13 · 17:00–17:30</b><div class="tiny muted">Дүн 17:40</div></div></div>
+  <div id="tournamentHome" class="tournamentCard tournamentHomeLiquid" onclick="openTournamentRegistration()" style="cursor:pointer"><div class="homeLiquidWave wave1"></div><div class="homeLiquidWave wave2"></div><div class="homeLiquidShine"></div><div class="homeTournamentInner"><b>🏆 ТЭМЦЭЭН</b><div class="homeRegOpen">🟢 БҮРТГЭЛ НЭЭЛТТЭЙ</div><div class="tiny" style="margin-top:5px;opacity:.9">Ойрын үед төлөвлөсөн тэмцээн</div><div style="margin-top:9px"><b>📅 2026.09.13 · 17:00–17:30</b><div class="tiny" style="opacity:.82">Дүн 17:40 · Дарж бүртгүүлнэ</div></div></div></div>
 <button id="adminBtn" class="btn hidden" onclick="showAdmin()">⚙️ ADMIN</button>
   <div class="grid2" style="margin-top:10px">
    <div class="menu" onclick="showLeaderboard()"><b>🏆 Чансаа</b><span class="muted">XP-ээр жагсана</span></div>
@@ -443,6 +467,32 @@ async function sendChat(){let message=chatInput.value.trim();if(!message||!me)re
 
 let tournamentTimer=null,tournamentState=null,tournamentCorrect=0,tournamentWrong=0,tournamentStartedAt=0,tournamentQuestion=null,tournamentQuestions=[],tournamentPos=0;
 const FINAL_OPEN=new Date('2026-09-13T17:00:00+08:00').getTime(),FINAL_CLOSE=new Date('2026-09-13T17:30:00+08:00').getTime(),FINAL_RESULTS=new Date('2026-09-13T17:40:00+08:00').getTime();
+const TOURNAMENT_KEY='2026-09-13';
+function finalPhase(){const n=Date.now();if(n<FINAL_OPEN)return 'before';if(n<FINAL_CLOSE)return 'open';if(n<FINAL_RESULTS)return 'closed';return 'results'}
+async function openTournamentRegistration(){
+ hidePages();tournamentPage.classList.remove('hidden');
+ tournamentContent.innerHTML='<h2>🏆 ТЭМЦЭЭН</h2><div class="notice">Бүртгэлийн мэдээлэл ачаалж байна…</div>';
+ const {data,error}=await sb.rpc('tournament_registration_status',{p_tournament_key:TOURNAMENT_KEY});
+ if(error){tournamentContent.innerHTML=`<h2>🏆 ТЭМЦЭЭН</h2><div class="feedback bad">Бүртгэлийн SQL хэрэгтэй: ${escapeHtml(error.message)}</div><button class="btn alt" onclick="backHome()">БУЦАХ</button>`;return}
+ renderTournamentRegistration(data||{});
+}
+function renderTournamentRegistration(st){
+ const phase=finalPhase(), registered=!!st.registered, count=Number(st.count||0);
+ let action='';
+ if(phase==='before') action=(registered?'<div class="regLiquid"><div class="regShine"></div><div class="regText">🟢 БҮРТГЭЛ НЭЭЛТТЭЙ</div><div class="regSub">✅ ТА ТЭМЦЭЭНД БҮРТГҮҮЛСЭН · 2026.09.13 · 17:00</div></div>':'<div class="regLiquid"><div class="regShine"></div><div class="regText">🟢 БҮРТГЭЛ НЭЭЛТТЭЙ</div><div class="regSub">Тэмцээнд урьдчилж бүртгүүлээрэй</div></div><button class="btn gold" onclick="registerTournament()">📝 ТЭМЦЭЭНД БҮРТГҮҮЛЭХ</button>');
+ else if(phase==='open') action=registered?'<div class="notice" style="border-color:#22c55e"><b>🟢 ТЭМЦЭЭН ЭХЭЛСЭН</b><div class="tiny">Та бүртгэлтэй байна.</div></div>':'<div class="feedback bad">⚠️ Та энэ тэмцээнд урьдчилж бүртгүүлээгүй байна.</div>';
+ else if(phase==='closed') action='<div class="notice">⏳ Тэмцээн хаагдсан. Дүн 17:40-д гарна.</div>';
+ else action='<button class="btn gold" onclick="showFinalResults()">🏆 ТЭМЦЭЭНИЙ ДҮН ҮЗЭХ</button>';
+ tournamentContent.innerHTML=`<div class="tiny">🏆 ТЭМЦЭЭН</div><h2>2026.09.13</h2><div class="leaderHero"><div class="tiny">БҮРТГҮҮЛСЭН ТОГЛОГЧ</div><div class="leaderName">👥 ${count}</div></div><div class="notice"><b>⏰ 17:00–17:30</b><br><span class="muted">Дүн 17:40-д гарна · Нэг account = нэг бүртгэл</span></div>${action}<button class="btn alt" onclick="backHome()">← НҮҮР РҮҮ</button>`;
+}
+async function registerTournament(){
+ const btn=event?.currentTarget;if(btn){btn.disabled=true;btn.textContent='⏳ БҮРТГЭЖ БАЙНА…'}
+ const {error}=await sb.rpc('register_tournament',{p_tournament_key:TOURNAMENT_KEY});
+ if(error){alert('Бүртгэж чадсангүй: '+error.message);if(btn)btn.disabled=false;return}
+ const {data}=await sb.rpc('tournament_registration_status',{p_tournament_key:TOURNAMENT_KEY});
+ renderTournamentRegistration(data||{registered:true});
+}
+
 
 
 
@@ -749,19 +799,68 @@ function setStatus(req){
   const box=el('payStatusBox');
   if(!req){box.innerHTML='Одоогоор хүсэлт олдсонгүй.';return}
   if(req.status==='approved'){
-    el('payStatusTitle').textContent='✅ ТӨЛБӨР БАТЛАГДЛАА';
-    el('payStatusText').textContent='Таны 1 сарын эрх идэвхжсэн. Одоо тоглоомоо ашиглаж болно.';
-    box.innerHTML='✅ Баталсан · '+new Date(req.reviewed_at||req.created_at).toLocaleString('mn-MN');
-    setTimeout(()=>{ if(typeof loadSession==='function') loadSession(); },500);
+    el('payStatusTitle').textContent='✅ ТАНЫ ТӨЛБӨР ТӨЛӨГДЛӨӨ';
+    el('payStatusText').textContent='🎉 1 сарын эрх идэвхжлээ. Тоглоом нээгдэж байна…';
+    box.innerHTML='✅ Эрх идэвхжсэн · '+new Date(req.reviewed_at||req.created_at).toLocaleString('mn-MN');
+    stopPaymentWatcher();
+    setTimeout(async()=>{
+      try{ await loadSession(); }catch(e){ console.error(e); }
+      const modal=el('payInfoModal'); if(modal) modal.classList.remove('open');
+    },1200);
   }else if(req.status==='rejected'){
     el('payStatusTitle').textContent='❌ ХҮСЭЛТ ТАТГАЛЗАГДЛАА';
     el('payStatusText').textContent='Гүйлгээний мэдээллээ шалгаад дахин хүсэлт илгээнэ үү.';
     box.innerHTML='❌ Татгалзсан';
   }else{
-    el('payStatusTitle').textContent='⏳ ШАЛГАЖ БАЙНА';
-    el('payStatusText').textContent='Төлбөр баталгаажаагүй байна. Админ дансаа шалгасны дараа эрх автоматаар нээгдэнэ.';
+    el('payStatusTitle').textContent='⏳ ТАНЫ ТӨЛБӨР ХҮЛЭЭГДЭЖ БАЙНА';
+    el('payStatusText').textContent='Баталгаажмагц 1 сарын эрх энэ дэлгэц дээр шууд идэвхжинэ.';
     box.innerHTML='⏳ Хүлээгдэж байна · '+new Date(req.created_at).toLocaleString('mn-MN');
+    startPaymentWatcher();
   }
+}
+
+let paymentWatchTimer=null;
+let paymentWatchBusy=false;
+function stopPaymentWatcher(){
+  if(paymentWatchTimer){clearInterval(paymentWatchTimer);paymentWatchTimer=null;}
+  paymentWatchBusy=false;
+}
+async function paymentWatchTick(){
+  if(paymentWatchBusy||!window.sb)return;
+  paymentWatchBusy=true;
+  try{
+    const {data:{session}}=await sb.auth.getSession();
+    if(!session){stopPaymentWatcher();return;}
+    const {data:req,error}=await sb.rpc('get_my_latest_payment_request');
+    if(!error && req){
+      if(req.status==='approved'){
+        setStatus(req);
+        return;
+      }
+      if(req.status==='rejected'){
+        setStatus(req);
+        stopPaymentWatcher();
+        return;
+      }
+    }
+    // Admin may have activated the profile even if payment status UI is delayed.
+    const {data:p}=await sb.from('profiles').select('is_active,access_expires_at').eq('id',session.user.id).single();
+    if(p?.is_active && (!p.access_expires_at || new Date(p.access_expires_at).getTime()>Date.now())){
+      if(window.me){me.active=true;me.access_expires_at=p.access_expires_at;}
+      const title=el('payStatusTitle'), text=el('payStatusText'), box=el('payStatusBox');
+      if(title)title.textContent='✅ ТАНЫ ТӨЛБӨР ТӨЛӨГДЛӨӨ';
+      if(text)text.textContent='🎉 1 сарын эрх идэвхжлээ. Тоглоом нээгдэж байна…';
+      if(box)box.innerHTML='✅ Эрх идэвхжсэн';
+      stopPaymentWatcher();
+      setTimeout(async()=>{await loadSession(); const modal=el('payInfoModal'); if(modal)modal.classList.remove('open');},1200);
+    }
+  }catch(e){console.error('paymentWatchTick',e)}
+  finally{paymentWatchBusy=false;}
+}
+function startPaymentWatcher(){
+  if(paymentWatchTimer)return;
+  paymentWatchTick();
+  paymentWatchTimer=setInterval(paymentWatchTick,2000);
 }
 async function checkMine(){
   if(!window.sb)return;
@@ -773,7 +872,7 @@ window.openPaymentInfo=async function(){
   el('payForm').style.display='block';el('payThanks').style.display='none';el('payInfoModal').classList.add('open');
   try{
     const {data}=await sb.rpc('get_my_latest_payment_request');
-    if(data && data.status==='pending'){el('payForm').style.display='none';el('payThanks').style.display='block';setStatus(data)}
+    if(data && (data.status==='pending'||data.status==='approved'||data.status==='rejected')){el('payForm').style.display='none';el('payThanks').style.display='block';setStatus(data)}
   }catch(e){}
 }
 document.addEventListener('DOMContentLoaded',function(){
@@ -814,15 +913,21 @@ setInterval(renderAccessStatus,30000);
 setInterval(async function(){
   try{
     if(!window.me||!me.id)return;
+    const wasActive=!!me.active;
     const {data:p}=await sb.from('profiles').select('is_active,access_expires_at').eq('id',me.id).single();
     if(!p)return;
-    me.active=p.is_active;me.access_expires_at=p.access_expires_at;
-    if(!me.active || (me.access_expires_at && new Date(me.access_expires_at).getTime()<=Date.now())){
-      me.active=false; openByState();
- watchDuels();
+    const valid=!!p.is_active && (!p.access_expires_at || new Date(p.access_expires_at).getTime()>Date.now());
+    me.active=valid;me.access_expires_at=p.access_expires_at;
+    if(!valid){ openByState(); }
+    else if(!wasActive && valid){
+      const title=el('payStatusTitle'), text=el('payStatusText'), box=el('payStatusBox');
+      if(title)title.textContent='✅ ТАНЫ ТӨЛБӨР ТӨЛӨГДЛӨӨ';
+      if(text)text.textContent='🎉 1 сарын эрх идэвхжлээ. Тоглоом нээгдэж байна…';
+      if(box)box.innerHTML='✅ Эрх идэвхжсэн';
+      setTimeout(()=>{const modal=el('payInfoModal');if(modal)modal.classList.remove('open');openByState();},1000);
     } else renderAccessStatus();
   }catch(e){console.error(e)}
-},60000);
+},3000);
 document.addEventListener('DOMContentLoaded',()=>setTimeout(renderAccessStatus,1200));
 </script>
 
