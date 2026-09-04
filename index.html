@@ -435,6 +435,7 @@ function examLocalKey(){return 'gamshig4_exam_last_'+(me?.username||'user')}
 function markExamDoneLocal(){try{localStorage.setItem(examLocalKey(),String(Date.now()))}catch(e){}}
 function getExamLastLocal(){try{return Number(localStorage.getItem(examLocalKey())||0)}catch(e){return 0}}
 function fmtWait(ms){let sec=Math.max(0,Math.ceil(ms/1000)),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function fmtElapsed(ms){let sec=Math.max(0,Math.round((Number(ms)||0)/1000)),m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
 function guardDaily(fn){if(!dailyExamDone){alert('📝 Шалгалт бэлэн болсон байна. Эхлээд 5 асуултын шалгалтаа өгнө үү.');return openDailyExam()}fn()}
 function setExamGateState(nextAt){
  dailyNextAt=nextAt||0;
@@ -478,31 +479,86 @@ function answerDaily(choice){if(dailyExamLocked)return;dailyExamLocked=true;clea
 function timeoutDaily(){if(dailyExamLocked)return;dailyExamLocked=true;dailyExamWrong++;dailyExamStreak=0;dailyExamTotalMs+=dailyLimit(dailyExamOrder[dailyExamPos])*1000;dailyExamPos++;if(dailyExamPos>=5){showDailyFinishButton();return}dailyExamContent.innerHTML=`<div class="feedback bad">⏰ Хугацаа дууслаа</div>`;setTimeout(renderDailyQuestion,350)}
 function showDailyFinishButton(){
  clearInterval(dailyExamTimer);dailyExamActive=true;dailyExamLocked=true;
- dailyExamContent.innerHTML=`<div class="tiny">📝 5/5 АСУУЛТАД ХАРИУЛЛАА</div><h2>Бүх асуултад хариуллаа ✅</h2><div class="notice">Одоо доорх товчийг дарахад таны <b>дүн, хувь, хурд, streak, нийт хугацаа</b> шууд гарна.</div><button id="dailyFinishBtn" class="btn gold" type="button">✅ ШАЛГАЛТАА ДУУСГАХ</button>`;
- const btn=document.getElementById('dailyFinishBtn');
- if(btn)btn.addEventListener('click',()=>finishDailyExam(),{once:true});
+ dailyExamContent.innerHTML=`<div class="tiny">📝 5/5 АСУУЛТАД ХАРИУЛЛАА</div><h2>Бүх асуултад хариуллаа ✅</h2><div class="notice">Доорх товчийг дарахад таны <b>дүн, хувь, хурд, streak, нийт хугацаа</b> энэ хуудсан дээр шууд гарна.</div><button id="dailyFinishBtn" class="btn gold" type="button" onclick="finishDailyExam()">✅ ШАЛГАЛТАА ДУУСГАХ</button>`;
+}
+async function saveExamResultToServer(snapshot){
+ const st=document.getElementById('dailySaveState');
+ try{
+   let {data,error}=await sb.rpc('submit_exam_30min',{
+     p_correct:snapshot.correct,
+     p_total:snapshot.total,
+     p_elapsed_ms:snapshot.elapsed,
+     p_best_streak:snapshot.best
+   });
+   if(error) throw error;
+   if(data?.next_at){
+     const next=new Date(data.next_at).getTime();
+     try{localStorage.setItem(examLocalKey(),String(next-30*60*1000))}catch(e){}
+     setExamGateState(next);startExamGateTicker();
+   }
+   if(st){st.className='feedback ok';st.innerHTML='✅ Тэргүүлэгчдийн хүснэгтэд бүртгэгдлээ.'}
+   // Өөрийн одоогийн rank-ийг шууд харуулна.
+   try{
+     const {data:board,error:boardErr}=await sb.rpc('get_exam_leaderboard');
+     if(!boardErr&&Array.isArray(board)){
+       const pos=board.findIndex(x=>x.player_username===me.username);
+       const mine=pos>=0?board[pos]:null;
+       const box=document.getElementById('dailyRankAfterSave');
+       if(box&&mine){
+         box.innerHTML=`<div class="leaderHero"><div class="tiny">📝 ШАЛГАЛТЫН ЧАНСАА</div><div class="leaderName">#${pos+1} · ${Number(mine.avg_percent).toFixed(1)}%</div><b>${mine.exam_days} шалгалтын дундаж</b></div>`;
+       }
+     }
+   }catch(e){}
+ }catch(err){
+   console.error('exam save error',err);
+   if(st){st.className='feedback bad';st.innerHTML='⚠️ Дүн дэлгэц дээр гарсан. Серверт бүртгэхэд алдаа: '+escapeHtml(err?.message||String(err))+'<br><span class="tiny">FIX_EXAM_RESULT_LEADERBOARD.sql-ийг Supabase дээр нэг удаа RUN хийгээрэй.</span>'}
+ }
 }
 function finishDailyExam(){
- clearInterval(dailyExamTimer);dailyExamActive=false;dailyExamLocked=true;
+ if(dailyExamPos<5){alert('Эхлээд 5 асуултаа бүгдийг хариулна уу.');return}
+ clearInterval(dailyExamTimer);
+ dailyExamActive=false;dailyExamLocked=true;
  const total=5;
- const pct=Math.round((dailyExamCorrect/total)*100);
- const avg=dailyExamTotalMs/total/1000;
- const wrong=Math.max(0,total-dailyExamCorrect);
- const now=Date.now();
- markExamDoneLocal();
- setExamGateState(now+30*60*1000);startExamGateTicker();
- // Дүнг тусдаа overlay дээр харуулна. Ингэснээр ямар ч refresh/server call дүнг дарж солихгүй.
- let old=document.getElementById('examResultOverlay');if(old)old.remove();
- const ov=document.createElement('div');
- ov.id='examResultOverlay';
- ov.style.cssText='position:fixed;inset:0;z-index:999999;background:rgba(2,8,23,.96);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto';
- ov.innerHTML=`<div style="width:min(620px,100%);background:#10243b;border:1px solid #31506f;border-radius:24px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.5)"><div class="tiny">📝 ШАЛГАЛТ ДУУСЛАА</div><h1 style="font-size:42px;margin:8px 0">${dailyExamCorrect}/${total} · ${pct}%</h1><div class="rankrow"><b>✅</b><div><b>Зөв хариулт</b></div><b>${dailyExamCorrect}</b></div><div class="rankrow"><b>❌</b><div><b>Буруу хариулт</b></div><b>${wrong}</b></div><div class="rankrow"><b>⚡</b><div><b>Таны хурд</b><div class="tiny">1 асуултад дунджаар</div></div><b>${avg.toFixed(1)} сек</b></div><div class="rankrow"><b>🔥</b><div><b>Best streak</b></div><b>${dailyExamBest}</b></div><div class="rankrow"><b>⏱️</b><div><b>Нийт хугацаа</b></div><b>${fmtElapsed(dailyExamTotalMs)}</b></div><div class="feedback ok">🟢 Дараагийн шалгалт <b>30:00</b> дараа бэлэн болно.</div><div id="dailySaveState" class="feedback ok">✅ Дүн гарлаа · Бусад тоглоом нээгдлээ.</div><button id="examResultHomeBtn" class="btn" type="button">🏠 НҮҮР РҮҮ</button></div>`;
- document.body.appendChild(ov);
- document.getElementById('examResultHomeBtn')?.addEventListener('click',()=>{ov.remove();backHome()},{once:true});
- // Сервер хадгалалт нь дүнгийн дэлгэцээс тусдаа ажиллана.
- Promise.resolve(sb.rpc('submit_exam_30min',{p_correct:dailyExamCorrect,p_total:total,p_elapsed_ms:Math.round(dailyExamTotalMs),p_best_streak:dailyExamBest}))
- .then(({data,error})=>{const st=document.getElementById('dailySaveState');if(error){if(st){st.className='feedback bad';st.innerHTML='⚠️ Дүн гарсан. Харин серверт хадгалах үед алдаа гарлаа.'}}else{if(st)st.innerHTML='✅ Дүн хадгалагдлаа · Бусад тоглоом нээгдлээ.';if(data?.next_at){setExamGateState(new Date(data.next_at).getTime());startExamGateTicker()}}})
- .catch(()=>{const st=document.getElementById('dailySaveState');if(st){st.className='feedback bad';st.innerHTML='⚠️ Дүн гарсан. Сервер хадгалалт түр амжилтгүй.'}})
+ const correct=Math.min(total,Math.max(0,Number(dailyExamCorrect)||0));
+ const wrong=total-correct;
+ const pct=Math.round((correct/total)*100);
+ const elapsed=Math.max(0,Math.round(Number(dailyExamTotalMs)||0));
+ const avg=elapsed>0?(elapsed/total/1000):0;
+ const best=Math.max(0,Number(dailyExamBest)||0);
+ const content=document.getElementById('dailyExamContent');
+ const page=document.getElementById('dailyExamPage');
+ if(page) page.classList.remove('hidden');
+ if(!content){alert(`Шалгалт дууслаа: ${correct}/${total} · ${pct}%`);return}
+
+ // 1) ЭХЛЭЭД ДҮНГ ШУУД ХАРУУЛНА. Ямар ч server/timer ажиллахаас ӨМНӨ.
+ content.innerHTML=`
+   <div class="tiny">📝 ШАЛГАЛТ ДУУСЛАА</div>
+   <h1 style="font-size:42px;margin:8px 0">${correct}/${total} · ${pct}%</h1>
+   <div class="rankrow"><b>✅</b><div><b>Зөв хариулт</b></div><b>${correct}</b></div>
+   <div class="rankrow"><b>❌</b><div><b>Буруу хариулт</b></div><b>${wrong}</b></div>
+   <div class="rankrow"><b>⚡</b><div><b>Таны хурд</b><div class="tiny">1 асуултад дунджаар</div></div><b>${avg.toFixed(1)} сек</b></div>
+   <div class="rankrow"><b>🔥</b><div><b>Best streak</b></div><b>${best}</b></div>
+   <div class="rankrow"><b>⏱️</b><div><b>Нийт хугацаа</b></div><b>${fmtElapsed(elapsed)}</b></div>
+   <div class="feedback ok">✅ Шалгалтын дүн гарлаа.</div>
+   <div id="dailySaveState" class="notice">⏳ Дүнг серверт бүртгэж байна…</div>
+   <div id="dailyRankAfterSave"></div>
+   <button class="btn" type="button" onclick="backHome()">🏠 НҮҮР РҮҮ</button>
+   <button class="btn alt" type="button" onclick="showExamLeaderboard()">📝 ШАЛГАЛТЫН ТЭРГҮҮЛЭГЧИД</button>`;
+
+ // 2) ДҮН ХАРАГДСАНЫ ДАРАА Л 30 минутыг эхлүүлнэ.
+ setTimeout(()=>{
+   try{
+     markExamDoneLocal();
+     const next=Date.now()+30*60*1000;
+     setExamGateState(next);
+     startExamGateTicker();
+   }catch(e){console.error('exam gate error',e)}
+ },0);
+
+ // 3) Server хадгалалт тусдаа. Алдаа гарсан ч дүнгийн дэлгэц хэвээр үлдэнэ.
+ setTimeout(()=>{
+   saveExamResultToServer({correct,total,elapsed,best}).catch?.(e=>console.error(e));
+ },50);
 }
 window.finishDailyExam=finishDailyExam;
 function confirmExamExit(){if(dailyExamActive){if(!confirm('Шалгалт дуусаагүй байна. Гарвал бүртгэгдэхгүй. Гарах уу?'))return;clearInterval(dailyExamTimer);dailyExamActive=false}backHome()}
